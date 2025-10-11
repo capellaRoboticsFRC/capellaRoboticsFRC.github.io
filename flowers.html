@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çiçekler ve Anlamları - Future in Bloom</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .flowers-hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .flowers-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .flowers-hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .flowers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 80px 0;
+            background: var(--background-color);
+        }
+        
+        .flower-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .flower-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 50px rgba(78, 205, 196, 0.3);
+        }
+        
+        .flower-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #E8F5E8, #F0F8FF);
+        }
+        
+        .flower-info {
+            padding: 30px;
+        }
+        
+        .flower-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .flower-meaning {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .flower-description {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .inspiration-section {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .inspiration-quote {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--primary-color);
+            line-height: 1.8;
+            padding: 40px;
+            background: linear-gradient(135deg, #F8FDF8, #F0F8FF);
+            border-radius: 20px;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigasyon -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Future in Bloom</div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#hakkimizda" class="nav-link">Hakkımızda</a>
+                </li>
+                <li class="nav-item">
+                    <a href="flowers.html" class="nav-link">Çiçekler</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#tarla" class="nav-link">Tarla</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="flowers-hero">
+        <div class="container">
+            <h1>Çiçekler ve Anlamları</h1>
+            <p>Her çiçeğin bir hikayesi, her kodun bir anlamı var. İlham verici çiçekler ve onların temsil ettiği değerler.</p>
+        </div>
+    </section>
+
+    <!-- Çiçek Grid -->
+    <section class="flowers-grid">
+        <div class="container">
+            <div class="flower-card">
+                <img src="images/gul.jpg" alt="Gül" class="flower-image">
+                <div class="flower-info">
+                    <h3>Gül</h3>
+                    <div class="flower-meaning">Anlamı: Aşk, Tutku, Cesaret</div>
+                    <p class="flower-description">Gül, yazılım dünyasında tutkuyu ve azmi temsil eder. Zorlu algoritmaları çözmek için gereken sabrı ve sevgiyi simgeler.</p>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="images/lale.jpg" alt="Lale" class="flower-image">
+                <div class="flower-info">
+                    <h3>Lale</h3>
+                    <div class="flower-meaning">Anlamı: Mükemmellik, Uyum, Yenilik</div>
+                    <p class="flower-description">Lale, temiz kod yazmanın ve sistemler arası uyumun sembolüdür. Her şeyin yerli yerinde olduğu zarif çözümleri temsil eder.</p>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="images/orkide.jpg" alt="Orkide" class="flower-image">
+                <div class="flower-info">
+                    <h3>Orkide</h3>
+                    <div class="flower-meaning">Anlamı: Zarafet, Karmaşıklık, Gizem</div>
+                    <p class="flower-description">Orkide, karmaşık problemleri zarif çözümlerle çözmeyi temsil eder. Kodun sanatsal yönünü ve derinliğini simgeler.</p>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="images/papatya.jpg" alt="Papatya" class="flower-image">
+                <div class="flower-info">
+                    <h3>Papatya</h3>
+                    <div class="flower-meaning">Anlamı: Masumiyet, Basitlik, Neşe</div>
+                    <p class="flower-description">Papatya, minimal ve etkili kod yazmanın güzelliğini temsil eder. Karmaşık olmayan, anlaşılır çözümlerin gücünü simgeler.</p>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="images/zambak.jpg" alt="Zambak" class="flower-image">
+                <div class="flower-info">
+                    <h3>Zambak</h3>
+                    <div class="flower-meaning">Anlamı: Saflık, Dürüstlük, İlham</div>
+                    <p class="flower-description">Zambak, açık kaynak kodun ve şeffaflığın sembolüdür. Topluluk içinde paylaşmanın ve birlikte büyümenin güzelliğini temsil eder.</p>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="images/menekse.jpg" alt="Menekşe" class="flower-image">
+                <div class="flower-info">
+                    <h3>Menekşe</h3>
+                    <div class="flower-meaning">Anlamı: Alçakgönüllülük, Sadakat, Derinlik</div>
+                    <p class="flower-description">Menekşe, sürekli öğrenme ve kendini geliştirme ruhunu temsil eder. Mütevazı başlangıçların büyük başarılara dönüşebileceğini simgeler.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İlham Bölümü -->
+    <section class="inspiration-section">
+        <div class="container">
+            <div class="inspiration-quote">
+                "Bir çiçek gibi büyümek için önce toprağa bir tohum atmak gerekir. 
+                Yazılım öğrenmek de böyledir - küçük bir kod satırıyla başlar, 
+                zamanla güzel projelere dönüşür. Her kadın developer, 
+                bu dijital tarladaki bir çiçektir."
+            </div>
+            <a href="index.html" class="back-to-home">Tarlaya Dön ve Çiçek Dik</a>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

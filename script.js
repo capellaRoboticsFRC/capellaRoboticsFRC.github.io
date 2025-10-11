@@ -1,4 +1,4 @@
-// Firebase konfigürasyonu 
+// Firebase konfigürasyonu - SENİN BİLGİLERİNLE
 const firebaseConfig = {
     apiKey: "AIzaSyCwTNJYV15hjAGeY4ugTa4uxBruGg9qOHc",
     authDomain: "future-in-bloom-capella.firebaseapp.com",
@@ -14,7 +14,7 @@ try {
     firebase.initializeApp(firebaseConfig);
     console.log("Firebase başarıyla başlatıldı!");
     
-    // Analytics'i başlat (isteğe bağlı)
+    // Analytics'i başlat
     const analytics = firebase.analytics();
     
 } catch (error) {
@@ -24,6 +24,13 @@ try {
 const db = firebase.firestore();
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Sadece index.html'deki elementleri kontrol et
+    if (document.getElementById('flowerField')) {
+        initializeApp();
+    }
+});
+
+function initializeApp() {
     // Modal elementleri
     const flowerModal = document.getElementById('flowerModal');
     const codeModal = document.getElementById('codeModal');
@@ -95,9 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Firebase'e kaydet
         await db.collection('flowers').add(flower);
-        
-        // Tarlayı yenile
-        renderFlowers();
     }
     
     // Çiçek büyüme aşamalarını güncelle
@@ -234,4 +238,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
+}
