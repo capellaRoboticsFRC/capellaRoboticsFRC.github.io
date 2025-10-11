@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capella FRC - Çiçek Tarlası</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics-compat.js"></script>
+</head>
+<body>
+    <!-- Üst Navigasyon -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Capella FRC</div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#anasayfa" class="nav-link">Ana Sayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#hakkimizda" class="nav-link">Hakkımızda</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#proje" class="nav-link">Proje</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tarla" class="nav-link">Tarla</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Ana Tarla Görünümü -->
+    <section id="anasayfa" class="tarla-section">
+        <div class="tarla-container">
+            <img src="images/tarla.jpg" alt="Tarla" class="tarla-image">
+            <div class="add-flower-btn" id="addFlowerBtn">
+                <span>+</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımızda Bölümü -->
+    <section id="hakkimizda" class="about-section">
+        <div class="container">
+            <h2>Hakkımızda</h2>
+            <div class="about-content">
+                <div class="about-item">
+                    <h3>Takımımız</h3>
+                    <p>Capella FRC olarak, robotik ve teknoloji alanında gençleri güçlendirmeyi hedefliyoruz. Takımımız, yaratıcılığı ve yenilikçi düşünceyi teşvik eden bir ortam sunuyor.</p>
+                </div>
+                <div class="about-item">
+                    <h3>Misyonumuz</h3>
+                    <p>Kızların ve genç kadınların STEM alanlarında daha fazla yer almasını sağlamak ve onları teknoloji dünyasında liderlik pozisyonlarına hazırlamak.</p>
+                </div>
+                <div class="about-item">
+                    <h3>Vizyonumuz</h3>
+                    <p>Daha kapsayıcı ve çeşitliliğe sahip bir teknoloji endüstrisi yaratmak, herkesin potansiyelini gerçekleştirebileceği bir gelecek inşa etmek.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proje Açıklama Bölümü -->
+    <section id="proje" class="project-section">
+        <div class="container">
+            <h2>Projemiz</h2>
+            <div class="project-content">
+                <p>Bir Capella FRC takımı olarak, dünyanın dört bir yanından kızların da yazılımda ve teknolojide aktif rol almasını istiyoruz. Bu sitede, artı butonuna tıklayan herkes açılan sayfaya bir kod yazacak. Bu kodun yazıldığı tarih kaydedilecek ve kişi siteye tekrar girdiğinde yazdığı kodu görebilecek.</p>
+                <p>Yazılan her kod bir çiçeğe dönüşecek. Biri ismini yazıp bir satır kod yazacak ve tarlada bir tohum gözükecek. Ertesi gün siteye girdiğinde o tohum fidan olacak, sonra o fidan tomurcuk olacak ve zamanla tam bir çiçeğe dönüşecek.</p>
+                <p>Dikilen çiçeklerin üzerine mouse ile geldiğinizde, çiçeği diken kişinin adını görebilirsiniz. Çiçeğe tıkladığınızda ise yazdığı kodu görüntüleyebilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Çiçek Tarlası Bölümü -->
+    <section id="tarla" class="flower-field-section">
+        <div class="container">
+            <h2>Çiçek Tarlası</h2>
+            <div class="flower-field" id="flowerField">
+                <!-- Çiçekler burada dinamik olarak oluşturulacak -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Çiçek Ekleme Modalı -->
+    <div class="modal" id="flowerModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Yeni Çiçek Ekle</h2>
+            <form id="flowerForm">
+                <div class="form-group">
+                    <label for="userName">Adınız:</label>
+                    <input type="text" id="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="code">Kodunuz:</label>
+                    <textarea id="code" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Çiçeği Dik</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Kod Görüntüleme Modalı -->
+    <div class="modal" id="codeModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeCodeModal">&times;</span>
+            <h2>Yazılan Kod</h2>
+            <div class="code-info">
+                <p><strong>Diken:</strong> <span id="codeAuthor"></span></p>
+                <p><strong>Tarih:</strong> <span id="codeDate"></span></p>
+            </div>
+            <pre id="codeDisplay"></pre>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
