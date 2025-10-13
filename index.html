@@ -32,6 +32,9 @@
     <section id="anasayfa" class="tarla-section">
         <div class="tarla-container">
             <img src="images/tarla.jpg" alt="Tarla" class="tarla-image">
+            <div class="flower-field" id="flowerField">
+                <!-- Çiçekler burada dinamik olarak oluşturulacak -->
+            </div>
             <div class="add-flower-btn" id="addFlowerBtn">
                 <span>+</span>
             </div>
@@ -75,8 +78,8 @@
     <section id="tarla" class="flower-field-section">
         <div class="container">
             <h2>Çiçek Tarlası</h2>
-            <div class="flower-field" id="flowerField">
-                <!-- Çiçekler burada dinamik olarak oluşturulacak -->
+            <div class="flower-list" id="flowerList">
+                <!-- Çiçek listesi burada gösterilecek -->
             </div>
         </div>
     </section>
@@ -108,8 +111,19 @@
             <div class="code-info">
                 <p><strong>Diken:</strong> <span id="codeAuthor"></span></p>
                 <p><strong>Tarih:</strong> <span id="codeDate"></span></p>
+                <p><strong>Çiçek:</strong> <span id="codeFlower"></span></p>
             </div>
             <pre id="codeDisplay"></pre>
+        </div>
+    </div>
+
+    <!-- Uyarı Modalı -->
+    <div class="modal" id="alertModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeAlertModal">&times;</span>
+            <h2>Tarla Doldu! 🌸</h2>
+            <p id="alertMessage"></p>
+            <button class="submit-btn" id="closeAlertBtn">Tamam</button>
         </div>
     </div>
 
