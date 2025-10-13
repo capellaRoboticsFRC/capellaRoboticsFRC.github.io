@@ -1,4 +1,3 @@
-/* YENİ RENK PALETİ - Gass block renklerine uyumlu */
 :root {
     --primary-color: #2E8B57;
     --secondary-color: #FF6B6B;
@@ -106,6 +105,112 @@ body {
     object-fit: cover;
 }
 
+.flower-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Çiçek Konumlandırma */
+.flower {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.flower:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+    z-index: 2;
+}
+
+.flower-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.5s ease;
+}
+
+.flower-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.flower:hover .flower-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Capella Çiçeği Özel Animasyon */
+@keyframes goldenGlow {
+    0% {
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    }
+    100% {
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+    }
+}
+
+@keyframes sparkleEffect {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes newFlowerGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(78, 205, 196, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(78, 205, 196, 0);
+    }
+}
+
+.flower.new-flower {
+    animation: newFlowerGlow 1.5s ease-out, sparkleEffect 0.6s ease-in-out 3;
+}
+
+.flower.capella {
+    animation: goldenGlow 2s ease-in-out infinite alternate;
+}
+
+.flower.capella .flower-tooltip {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    font-weight: bold;
+}
+
 .add-flower-btn {
     position: absolute;
     bottom: 50px;
@@ -124,6 +229,7 @@ body {
     transition: all 0.3s ease;
     border: none;
     z-index: 10;
+    pointer-events: auto;
 }
 
 .add-flower-btn:hover {
@@ -217,137 +323,18 @@ section h2::after {
     background: white;
 }
 
-.flower-field {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.flower-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    min-height: 400px;
-    border: 3px dashed var(--accent-color);
-    border-radius: 20px;
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #F8FDF8 0%, #F0F8FF 50%, #F8F0FF 100%);
-    box-shadow: inset 0 0 30px rgba(78, 205, 196, 0.1);
 }
 
-/* YENİ ÇİÇEK STİLLERİ - RENKLİ */
-.flower {
-    width: 100px;
-    height: 150px;
-    margin: 15px;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-}
-
-.flower:hover {
-    transform: scale(1.15) translateY(-5px);
-    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2));
-}
-
-.flower-tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: white;
-    padding: 8px 15px;
+.flower-list-item {
+    background: var(--card-color);
+    padding: 20px;
     border-radius: 15px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.flower:hover .flower-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-5px);
-}
-
-/* YENİ ÇİÇEK BÜYÜME AŞAMALARI - RENKLİ */
-.seed {
-    width: 25px;
-    height: 25px;
-    background: linear-gradient(135deg, #8B4513, #A0522D);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.4);
-}
-
-.sprout {
-    width: 12px;
-    height: 50px;
-    background: linear-gradient(to top, #228B22, #32CD32);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
-}
-
-.bud {
-    width: 18px;
-    height: 70px;
-    background: linear-gradient(to top, #228B22, #32CD32);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 8px 8px 0 0;
-    box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
-}
-
-.bud::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 25px;
-    height: 25px;
-    background: linear-gradient(135deg, #FF69B4, #FF1493);
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.4);
-}
-
-.flower-bloom {
-    width: 18px;
-    height: 90px;
-    background: linear-gradient(to top, #228B22, #32CD32);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 8px 8px 0 0;
-    box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
-}
-
-.flower-bloom::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(135deg, var(--secondary-color), #FF1493);
-    border-radius: 50% 50% 0 50%;
-    transform: translateX(-50%) rotate(45deg);
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    animation: bloomPulse 2s ease-in-out infinite alternate;
-}
-
-@keyframes bloomPulse {
-    0% { transform: translateX(-50%) rotate(45deg) scale(1); }
-    100% { transform: translateX(-50%) rotate(45deg) scale(1.05); }
+    box-shadow: 0 5px 15px rgba(46, 139, 87, 0.1);
+    border-left: 4px solid var(--accent-color);
 }
 
 /* Modal Stilleri - YENİ TASARIM */
@@ -373,6 +360,18 @@ section h2::after {
     position: relative;
     box-shadow: 0 20px 60px rgba(46, 139, 87, 0.3);
     border: 2px solid var(--accent-color);
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .close-btn {
@@ -382,6 +381,7 @@ section h2::after {
     font-size: 1.5rem;
     cursor: pointer;
     color: #777;
+    transition: color 0.3s ease;
 }
 
 .close-btn:hover {
@@ -391,6 +391,7 @@ section h2::after {
 .modal h2 {
     margin-bottom: 20px;
     color: var(--primary-color);
+    text-align: center;
 }
 
 /* Form Stilleri */
@@ -464,6 +465,8 @@ section h2::after {
     font-family: 'Courier New', monospace;
     white-space: pre-wrap;
     border: 1px solid #e9ecef;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 /* Yükleme göstergesi */
@@ -489,6 +492,19 @@ section h2::after {
     background-color: #ffeaea;
     border-radius: 10px;
     border: 1px solid #f5c6cb;
+}
+
+/* Tarla doluluk göstergesi */
+.tarla-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 5;
 }
 
 /* Responsive Tasarım */
@@ -537,5 +553,17 @@ section h2::after {
     
     .project-content {
         padding: 30px 20px;
+    }
+    
+    .flower {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .tarla-info {
+        top: 10px;
+        left: 10px;
+        font-size: 0.8rem;
+        padding: 8px 12px;
     }
 }
