@@ -78,6 +78,79 @@ body {
     transform: translateY(-2px);
 }
 
+/* Hamburger Menu - TELEFON ve TABLET */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+}
+
+.mobile-nav-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-nav-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.mobile-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 30px;
+}
+
+/* Hamburger Animation */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* Tarla Bölümü - YENİ TASARIM */
 .tarla-section {
     margin-top: 80px;
@@ -657,25 +730,15 @@ section h2::after {
 /* Responsive Tasarım */
 @media (max-width: 768px) {
     .nav-menu {
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
         display: none;
     }
     
-    .nav-menu.active {
+    .hamburger {
         display: flex;
     }
     
-    .nav-item {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-        padding: 15px 0;
-        border-top: 1px solid rgba(255,255,255,0.1);
+    .mobile-menu {
+        display: block;
     }
     
     .about-content {
@@ -761,5 +824,14 @@ section h2::after {
     
     .flower-image {
         padding: 12px;
+    }
+    
+    .nav-logo {
+        font-size: 1.4rem;
+    }
+    
+    .mobile-nav-link {
+        font-size: 1rem;
+        padding: 15px;
     }
 }
