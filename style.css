@@ -187,11 +187,11 @@ body {
     pointer-events: none;
 }
 
-/* Çiçek Konumlandırma - ÇOK BÜYÜK BOYUT */
+/* Çiçek Konumlandırma - DÜZ GÖRÜNÜM */
 .flower {
     position: absolute;
-    width: 150px; /* 100px'ten 150px'e büyüttüm */
-    height: 150px; /* 100px'ten 150px'e büyüttüm */
+    width: 150px;
+    height: 150px;
     cursor: pointer;
     transition: all 0.5s ease;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
@@ -200,7 +200,7 @@ body {
 }
 
 .flower:hover {
-    transform: scale(1.15); /* Daha az büyüsün */
+    transform: scale(1.15);
     filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
     z-index: 2;
 }
@@ -210,6 +210,12 @@ body {
     height: 100%;
     object-fit: contain;
     transition: all 0.5s ease;
+    /* Daire efekti kaldırıldı */
+    border-radius: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
 .flower-tooltip {
@@ -219,11 +225,11 @@ body {
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
-    padding: 10px 18px; /* Daha da büyüttüm */
+    padding: 10px 18px;
     border-radius: 15px;
-    font-size: 0.9rem; /* Daha büyük yazı */
+    font-size: 0.9rem;
     white-space: normal;
-    width: 160px; /* Daha geniş */
+    width: 160px;
     text-align: center;
     opacity: 0;
     transition: all 0.3s ease;
@@ -280,14 +286,14 @@ body {
 
 .flower.capella {
     animation: goldenGlow 2s ease-in-out infinite alternate;
-    width: 180px !important; /* 120px'ten 180px'e büyüttüm */
-    height: 180px !important; /* 120px'ten 180px'e büyüttüm */
+    width: 180px !important;
+    height: 180px !important;
 }
 
 .flower.capella .flower-tooltip {
     background: linear-gradient(135deg, #FFD700, #FFA500);
     font-weight: bold;
-    font-size: 1rem; /* Capella için daha büyük yazı */
+    font-size: 1rem;
 }
 
 .add-flower-btn {
@@ -428,16 +434,16 @@ section h2::after {
     max-width: 1200px;
 }
 
-/* Çiçek kartları - YENİ TASARIM */
+/* Çiçek kartları - DÜZ GÖRÜNÜM */
 .flower-card {
     background: white;
     border-radius: 20px;
-    padding: 30px; /* Daha fazla padding */
+    padding: 30px;
     box-shadow: 0 8px 25px rgba(46, 139, 87, 0.1);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 25px; /* Daha fazla boşluk */
+    gap: 25px;
     border: 2px solid transparent;
 }
 
@@ -447,27 +453,31 @@ section h2::after {
     border-color: var(--accent-color);
 }
 
-/* Çiçek görselleri - ÇOK BÜYÜK ve DAİRE İÇİNDE */
+/* Çiçek görselleri - DÜZ GÖRÜNÜM */
 .flower-image-container {
-    width: 160px; /* 120px'ten 160px'e büyüttüm */
-    height: 160px; /* 120px'ten 160px'e büyüttüm */
+    width: 160px;
+    height: 160px;
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .flower-image {
     width: 100% !important;
     height: 100% !important;
     object-fit: contain;
-    border-radius: 50%;
-    padding: 25px; /* 20px'ten 25px'e büyüttüm */
-    background: linear-gradient(135deg, #E8F5E8 0%, #F0F8FF 100%);
-    border: 3px solid var(--accent-color);
-    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
     transition: all 0.3s ease;
+    /* Daire efekti kaldırıldı */
+    border-radius: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
 .flower-card:hover .flower-image {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
 }
 
@@ -478,7 +488,7 @@ section h2::after {
 
 .flower-info h3 {
     color: var(--primary-color);
-    font-size: 1.6rem; /* Daha büyük başlık */
+    font-size: 1.6rem;
     margin-bottom: 10px;
     font-weight: bold;
 }
@@ -487,13 +497,13 @@ section h2::after {
     color: var(--secondary-color);
     font-weight: 600;
     margin-bottom: 10px;
-    font-size: 1.1rem; /* Daha büyük */
+    font-size: 1.1rem;
 }
 
 .flower-description {
     color: var(--text-color);
     line-height: 1.6;
-    font-size: 1rem; /* Daha büyük */
+    font-size: 1rem;
 }
 
 /* Capella özel stili */
@@ -516,11 +526,6 @@ section h2::after {
     font-weight: bold;
     transform: rotate(45deg);
     box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-}
-
-.capella-special .flower-image {
-    border-color: #FFD700;
-    background: linear-gradient(135deg, #FFF9E6, #FFFAF0);
 }
 
 /* İlham bölümü */
@@ -768,13 +773,13 @@ section h2::after {
     }
     
     .flower {
-        width: 120px; /* Mobilde 120px */
-        height: 120px; /* Mobilde 120px */
+        width: 120px;
+        height: 120px;
     }
     
     .flower.capella {
-        width: 140px !important; /* Mobilde 140px */
-        height: 140px !important; /* Mobilde 140px */
+        width: 140px !important;
+        height: 140px !important;
     }
     
     .tarla-info {
@@ -805,12 +810,8 @@ section h2::after {
     }
     
     .flower-image-container {
-        width: 140px; /* Mobilde 140px */
-        height: 140px; /* Mobilde 140px */
-    }
-    
-    .flower-image {
-        padding: 20px;
+        width: 140px;
+        height: 140px;
     }
     
     .flower-info h3 {
@@ -842,12 +843,8 @@ section h2::after {
     }
     
     .flower-image-container {
-        width: 120px; /* Küçük ekranlarda 120px */
-        height: 120px; /* Küçük ekranlarda 120px */
-    }
-    
-    .flower-image {
-        padding: 15px;
+        width: 120px;
+        height: 120px;
     }
     
     .nav-logo {
@@ -860,13 +857,13 @@ section h2::after {
     }
     
     .flower {
-        width: 100px; /* Küçük ekranlarda 100px */
-        height: 100px; /* Küçük ekranlarda 100px */
+        width: 100px;
+        height: 100px;
     }
     
     .flower.capella {
-        width: 120px !important; /* Küçük ekranlarda 120px */
-        height: 120px !important; /* Küçük ekranlarda 120px */
+        width: 120px !important;
+        height: 120px !important;
     }
     
     .flower-tooltip {
