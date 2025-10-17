@@ -187,11 +187,11 @@ body {
     pointer-events: none;
 }
 
-/* Çiçek Konumlandırma - BÜYÜK BOYUT */
+/* Çiçek Konumlandırma - ÇOK BÜYÜK BOYUT */
 .flower {
     position: absolute;
-    width: 100px; /* 60px'ten 100px'e büyüttüm */
-    height: 100px; /* 60px'ten 100px'e büyüttüm */
+    width: 150px; /* 100px'ten 150px'e büyüttüm */
+    height: 150px; /* 100px'ten 150px'e büyüttüm */
     cursor: pointer;
     transition: all 0.5s ease;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
@@ -200,7 +200,7 @@ body {
 }
 
 .flower:hover {
-    transform: scale(1.2); /* 1.3'ten 1.2'ye küçülttüm */
+    transform: scale(1.15); /* Daha az büyüsün */
     filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
     z-index: 2;
 }
@@ -219,16 +219,17 @@ body {
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
-    padding: 8px 15px; /* Padding'i büyüttüm */
+    padding: 10px 18px; /* Daha da büyüttüm */
     border-radius: 15px;
-    font-size: 0.8rem; /* Yazı boyutunu büyüttüm */
+    font-size: 0.9rem; /* Daha büyük yazı */
     white-space: normal;
-    width: 140px; /* Genişliği artırdım */
+    width: 160px; /* Daha geniş */
     text-align: center;
     opacity: 0;
     transition: all 0.3s ease;
     pointer-events: none;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 3;
 }
 
 .flower:hover .flower-tooltip {
@@ -279,13 +280,14 @@ body {
 
 .flower.capella {
     animation: goldenGlow 2s ease-in-out infinite alternate;
-    width: 120px !important; /* 70px'ten 120px'e büyüttüm */
-    height: 120px !important; /* 70px'ten 120px'e büyüttüm */
+    width: 180px !important; /* 120px'ten 180px'e büyüttüm */
+    height: 180px !important; /* 120px'ten 180px'e büyüttüm */
 }
 
 .flower.capella .flower-tooltip {
     background: linear-gradient(135deg, #FFD700, #FFA500);
     font-weight: bold;
+    font-size: 1rem; /* Capella için daha büyük yazı */
 }
 
 .add-flower-btn {
@@ -430,12 +432,12 @@ section h2::after {
 .flower-card {
     background: white;
     border-radius: 20px;
-    padding: 25px;
+    padding: 30px; /* Daha fazla padding */
     box-shadow: 0 8px 25px rgba(46, 139, 87, 0.1);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 25px; /* Daha fazla boşluk */
     border: 2px solid transparent;
 }
 
@@ -445,10 +447,10 @@ section h2::after {
     border-color: var(--accent-color);
 }
 
-/* Çiçek görselleri - BÜYÜK ve DAİRE İÇİNDE */
+/* Çiçek görselleri - ÇOK BÜYÜK ve DAİRE İÇİNDE */
 .flower-image-container {
-    width: 120px; /* 80px'ten 120px'e büyüttüm */
-    height: 120px; /* 80px'ten 120px'e büyüttüm */
+    width: 160px; /* 120px'ten 160px'e büyüttüm */
+    height: 160px; /* 120px'ten 160px'e büyüttüm */
     flex-shrink: 0;
 }
 
@@ -457,7 +459,7 @@ section h2::after {
     height: 100% !important;
     object-fit: contain;
     border-radius: 50%;
-    padding: 20px; /* 15px'ten 20px'e büyüttüm */
+    padding: 25px; /* 20px'ten 25px'e büyüttüm */
     background: linear-gradient(135deg, #E8F5E8 0%, #F0F8FF 100%);
     border: 3px solid var(--accent-color);
     box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
@@ -476,22 +478,22 @@ section h2::after {
 
 .flower-info h3 {
     color: var(--primary-color);
-    font-size: 1.4rem;
-    margin-bottom: 8px;
+    font-size: 1.6rem; /* Daha büyük başlık */
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
 .flower-meaning {
     color: var(--secondary-color);
     font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-size: 1.1rem; /* Daha büyük */
 }
 
 .flower-description {
     color: var(--text-color);
-    line-height: 1.5;
-    font-size: 0.9rem;
+    line-height: 1.6;
+    font-size: 1rem; /* Daha büyük */
 }
 
 /* Capella özel stili */
@@ -766,13 +768,13 @@ section h2::after {
     }
     
     .flower {
-        width: 80px; /* Mobilde 80px */
-        height: 80px; /* Mobilde 80px */
+        width: 120px; /* Mobilde 120px */
+        height: 120px; /* Mobilde 120px */
     }
     
     .flower.capella {
-        width: 90px !important; /* Mobilde 90px */
-        height: 90px !important; /* Mobilde 90px */
+        width: 140px !important; /* Mobilde 140px */
+        height: 140px !important; /* Mobilde 140px */
     }
     
     .tarla-info {
@@ -799,16 +801,28 @@ section h2::after {
     .flower-card {
         flex-direction: column;
         text-align: center;
-        padding: 20px;
+        padding: 25px;
     }
     
     .flower-image-container {
-        width: 100px; /* Mobilde 100px */
-        height: 100px; /* Mobilde 100px */
+        width: 140px; /* Mobilde 140px */
+        height: 140px; /* Mobilde 140px */
     }
     
     .flower-image {
-        padding: 15px; /* Mobilde biraz küçük */
+        padding: 20px;
+    }
+    
+    .flower-info h3 {
+        font-size: 1.4rem;
+    }
+    
+    .flower-meaning {
+        font-size: 1rem;
+    }
+    
+    .flower-description {
+        font-size: 0.95rem;
     }
     
     .inspiration-quote {
@@ -824,15 +838,16 @@ section h2::after {
     
     .flower-card {
         margin: 0 10px;
+        padding: 20px;
     }
     
     .flower-image-container {
-        width: 90px; /* Küçük ekranlarda 90px */
-        height: 90px; /* Küçük ekranlarda 90px */
+        width: 120px; /* Küçük ekranlarda 120px */
+        height: 120px; /* Küçük ekranlarda 120px */
     }
     
     .flower-image {
-        padding: 12px;
+        padding: 15px;
     }
     
     .nav-logo {
@@ -845,12 +860,18 @@ section h2::after {
     }
     
     .flower {
-        width: 70px; /* Küçük ekranlarda 70px */
-        height: 70px; /* Küçük ekranlarda 70px */
+        width: 100px; /* Küçük ekranlarda 100px */
+        height: 100px; /* Küçük ekranlarda 100px */
     }
     
     .flower.capella {
-        width: 80px !important; /* Küçük ekranlarda 80px */
-        height: 80px !important; /* Küçük ekranlarda 80px */
+        width: 120px !important; /* Küçük ekranlarda 120px */
+        height: 120px !important; /* Küçük ekranlarda 120px */
+    }
+    
+    .flower-tooltip {
+        font-size: 0.8rem;
+        width: 140px;
+        padding: 8px 12px;
     }
 }
