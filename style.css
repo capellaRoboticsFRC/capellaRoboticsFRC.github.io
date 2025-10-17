@@ -6,8 +6,10 @@
     --text-color: #2C3E50;
     --card-color: #FFFFFF;
     --hover-color: #45B7A8;
-    --flower-size: 150px; /* Çiçek boyutunu 2x büyüttük */
+    --flower-size: 150px;
     --flower-hover-size: 180px;
+    --soil-color: #8B4513;
+    --soil-light: #A0522D;
 }
 
 * {
@@ -80,16 +82,18 @@ body {
     transform: translateY(-2px);
 }
 
-/* Tarla Bölümü - ÇİÇEKLER 2X BÜYÜK */
+/* Tarla Bölümü - GÖRSEL KALDIRILDI, TOPRAK RENGİ */
 .tarla-section {
     margin-top: 80px;
     position: relative;
-    height: 90vh; /* Daha yüksek tarla */
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #E8F5E8 0%, #F0F8FF 100%);
+    background: linear-gradient(135deg, var(--soil-color) 0%, var(--soil-light) 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
 }
 
 .tarla-container {
@@ -98,13 +102,6 @@ body {
     height: 100%;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
-}
-
-.tarla-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .flower-field {
@@ -116,29 +113,34 @@ body {
     pointer-events: none;
 }
 
-/* ÇİÇEKLER 2X DAHA BÜYÜK */
+/* ÇİÇEKLER - ARKAPLAN SORUNU ÇÖZÜLDÜ */
 .flower {
     position: absolute;
     width: var(--flower-size);
     height: var(--flower-size);
     cursor: pointer;
     transition: all 0.5s ease;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
     z-index: 1;
     pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent !important;
 }
 
 .flower:hover {
     transform: scale(1.2);
-    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.4));
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.5));
     z-index: 2;
 }
 
 .flower-image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     transition: all 0.5s ease;
+    background: transparent !important;
 }
 
 .flower-tooltip {
@@ -157,6 +159,7 @@ body {
     pointer-events: none;
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     font-weight: bold;
+    z-index: 10;
 }
 
 .flower:hover .flower-tooltip {
@@ -164,7 +167,7 @@ body {
     transform: translateX(-50%) translateY(-10px);
 }
 
-/* Capella Çiçeği Özel Animasyon - DAHA GÖSTERİŞLİ */
+/* Capella Çiçeği Özel Animasyon */
 @keyframes goldenGlow {
     0% {
         filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
@@ -214,12 +217,19 @@ body {
 
 .flower.new-flower {
     animation: newFlowerGlow 2s ease-out, sparkleEffect 0.8s ease-in-out 3;
+    background: transparent !important;
 }
 
 .flower.capella {
     animation: goldenGlow 1.5s ease-in-out infinite alternate;
     width: calc(var(--flower-size) * 1.2);
     height: calc(var(--flower-size) * 1.2);
+    background: transparent !important;
+}
+
+.flower.capella .flower-image {
+    object-fit: cover;
+    background: transparent !important;
 }
 
 .flower.capella:hover {
@@ -258,6 +268,38 @@ body {
 .add-flower-btn:hover {
     transform: scale(1.1) rotate(90deg);
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+}
+
+/* Tarla bilgi göstergesi */
+.tarla-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    z-index: 5;
+    font-weight: bold;
+    border: 3px solid var(--accent-color);
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+/* Toprak dokusu */
+.tarla-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(0,0,0,0.1) 1px, transparent 1px);
+    background-size: 50px 50px, 30px 30px;
+    pointer-events: none;
 }
 
 /* Bölüm Başlıkları */
@@ -388,8 +430,8 @@ section h2::after {
 .flower-card .flower-image {
     width: 100%;
     height: 200px;
-    object-fit: contain;
-    padding: 20px;
+    object-fit: cover;
+    padding: 10px;
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
@@ -591,19 +633,17 @@ section h2::after {
     overflow-y: auto;
 }
 
-/* Tarla doluluk göstergesi */
-.tarla-info {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px 20px;
-    border-radius: 15px;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 5;
-    font-weight: bold;
-    border: 2px solid var(--accent-color);
+/* Yükleme ve hata mesajları */
+.no-flowers, .error {
+    text-align: center;
+    padding: 60px;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.no-flowers h3, .error h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
 }
 
 /* Responsive Tasarım */
@@ -677,5 +717,9 @@ section h2::after {
     
     .flowers-grid .container {
         grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 30px 20px;
     }
 }
