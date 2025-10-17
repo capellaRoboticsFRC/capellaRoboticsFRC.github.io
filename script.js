@@ -45,7 +45,60 @@ let usedPositions = new Set();
 const MAX_FLOWERS = 50;
 let growthIntervals = {};
 
+// Hamburger menu fonksiyonu
+function setupMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Mobile linklere tıklanınca menüyü kapat
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Ekran dışına tıklanınca menüyü kapat
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav-container') && !event.target.closest('.mobile-menu')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Smooth scroll fonksiyonu
+function setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    setupMobileMenu();
+    setupSmoothScroll();
+    
     if (document.getElementById('flowerField')) {
         initializeApp();
     }
@@ -111,7 +164,6 @@ function initializeApp() {
     // Uygulamayı başlat
     renderFlowers();
     setupRealtimeListener();
-    setupSmoothScroll();
 }
 
 // Rastgele çiçek türü seç
@@ -390,27 +442,70 @@ function showAlert(message) {
     alertModal.style.display = 'flex';
 }
 
-// Smooth scroll
-function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
 // Sayfa kapatıldığında interval'ları temizle
 window.addEventListener('beforeunload', function() {
     Object.values(growthIntervals).forEach(interval => clearTimeout(interval));
 });
+
+// Sayfa görünürlüğü değiştiğinde kontrol et (performans için)
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        // Sayfa gizlendiğinde interval'ları duraklat
+        Object.values(growthIntervals).forEach(interval => {
+            clearTimeout(interval);
+        });
+    } else {
+        // Sayfa görünür olduğunda çiçekleri yeniden render et
+        if (document.getElementById('flowerField')) {
+            renderFlowers();
+        }
+    }
+});
+
+// PWA için service worker kaydı (isteğe bağlı)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker kaydı başarılı: ', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('ServiceWorker kaydı başarısız: ', error);
+            });
+    });
+}
+
+// Çevrimdışı destek
+window.addEventListener('online', function() {
+    console.log('Çevrimiçi oldu');
+    if (document.getElementById('flowerField')) {
+        renderFlowers();
+    }
+});
+
+window.addEventListener('offline', function() {
+    console.log('Çevrimdışı oldu');
+    showAlert('İnternet bağlantısı kesildi. Çevrimdışı moddasınız.');
+});
+
+// Hata yönetimi
+window.addEventListener('error', function(e) {
+    console.error('Global hata:', e.error);
+});
+
+// Performans optimizasyonu
+let isRendering = false;
+function debounceRender() {
+    if (isRendering) return;
+    isRendering = true;
+    
+    setTimeout(() => {
+        if (document.getElementById('flowerField')) {
+            renderFlowers().finally(() => {
+                isRendering = false;
+            });
+        } else {
+            isRendering = false;
+        }
+    }, 100);
+}
