@@ -42,7 +42,7 @@ const GROWTH_STAGES = {
 // Global değişkenler
 let capellaCounter = 0;
 let usedPositions = new Set();
-const MAX_FLOWERS = 50;
+const MAX_FLOWERS = 30; // 50'den 30'a düşürüldü
 let growthIntervals = {};
 
 // Hamburger menu fonksiyonu
@@ -186,11 +186,11 @@ function getRandomFlowerType() {
 
 // Boş pozisyon bul
 function getEmptyPosition() {
-    const gridSize = 8;
+    const gridSize = 6; // 8'den 6'ya düşürüldü (daha az çiçek için)
     const positions = [];
     
-    for (let x = 10; x <= 90; x += 10) {
-        for (let y = 10; y <= 80; y += 10) {
+    for (let x = 10; x <= 90; x += 15) { // 10px yerine 15px aralık
+        for (let y = 10; y <= 80; y += 15) { // 10px yerine 15px aralık
             positions.push(`${x}-${y}`);
         }
     }
@@ -461,51 +461,3 @@ document.addEventListener('visibilitychange', function() {
         }
     }
 });
-
-// PWA için service worker kaydı (isteğe bağlı)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker kaydı başarılı: ', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('ServiceWorker kaydı başarısız: ', error);
-            });
-    });
-}
-
-// Çevrimdışı destek
-window.addEventListener('online', function() {
-    console.log('Çevrimiçi oldu');
-    if (document.getElementById('flowerField')) {
-        renderFlowers();
-    }
-});
-
-window.addEventListener('offline', function() {
-    console.log('Çevrimdışı oldu');
-    showAlert('İnternet bağlantısı kesildi. Çevrimdışı moddasınız.');
-});
-
-// Hata yönetimi
-window.addEventListener('error', function(e) {
-    console.error('Global hata:', e.error);
-});
-
-// Performans optimizasyonu
-let isRendering = false;
-function debounceRender() {
-    if (isRendering) return;
-    isRendering = true;
-    
-    setTimeout(() => {
-        if (document.getElementById('flowerField')) {
-            renderFlowers().finally(() => {
-                isRendering = false;
-            });
-        } else {
-            isRendering = false;
-        }
-    }, 100);
-}
