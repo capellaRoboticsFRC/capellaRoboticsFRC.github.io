@@ -20,18 +20,18 @@ try {
 
 const db = firebase.firestore();
 
-// Çiçek türleri - PNG FORMATINDA
+// Çiçek türleri - PNG FORMATINDA (2X BÜYÜK GÖRSELLER İÇİN)
 const FLOWER_TYPES = {
-    GUL: { name: 'Gül', image: 'gul.png', probability: 1 },
-    LALE: { name: 'Lale', image: 'lale.png', probability: 1 },
-    ORKIDE: { name: 'Orkide', image: 'orkide.png', probability: 1 },
-    PAPATYA: { name: 'Papatya', image: 'papatya.png', probability: 1 },
-    ZAMBAK: { name: 'Zambak', image: 'zambak.png', probability: 1 },
-    MENEKSE: { name: 'Menekşe', image: 'menekse.png', probability: 1 },
-    CAPELLA: { name: 'Capella', image: 'capella.png', probability: 1/30 }
+    GUL: { name: 'Gül', image: 'gul.png', probability: 1, meaning: 'Aşk, Tutku, Cesaret' },
+    LALE: { name: 'Lale', image: 'lale.png', probability: 1, meaning: 'Mükemmellik, Uyum' },
+    ORKIDE: { name: 'Orkide', image: 'orkide.png', probability: 1, meaning: 'Zarafet, Karmaşıklık' },
+    PAPATYA: { name: 'Papatya', image: 'papatya.png', probability: 1, meaning: 'Basitlik, Neşe' },
+    ZAMBAK: { name: 'Zambak', image: 'zambak.png', probability: 1, meaning: 'Saflık, Dürüstlük' },
+    MENEKSE: { name: 'Menekşe', image: 'menekse.png', probability: 1, meaning: 'Alçakgönüllülük' },
+    CAPELLA: { name: 'Capella', image: 'capella.png', probability: 1/30, meaning: 'Nadirlik, Liderlik' }
 };
 
-// Büyüme aşamaları - PNG FORMATINDA
+// Büyüme aşamaları - PNG FORMATINDA (2X BÜYÜK GÖRSELLER)
 const GROWTH_STAGES = {
     SEED: { name: 'Tohum', image: 'tohum.png', duration: 30000 }, // 30 saniye
     SPROUT: { name: 'Fidan', image: 'fidan.png', duration: 60000 }, // 1 dakika
@@ -42,63 +42,10 @@ const GROWTH_STAGES = {
 // Global değişkenler
 let capellaCounter = 0;
 let usedPositions = new Set();
-const MAX_FLOWERS = 30; // 50'den 30'a düşürüldü
+const MAX_FLOWERS = 30; // Daha az çiçek ama daha büyük
 let growthIntervals = {};
 
-// Hamburger menu fonksiyonu
-function setupMobileMenu() {
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-    
-    if (hamburger && mobileMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
-        
-        // Mobile linklere tıklanınca menüyü kapat
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
-        // Ekran dışına tıklanınca menüyü kapat
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.nav-container') && !event.target.closest('.mobile-menu')) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            }
-        });
-    }
-}
-
-// Smooth scroll fonksiyonu
-function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    setupMobileMenu();
-    setupSmoothScroll();
-    
     if (document.getElementById('flowerField')) {
         initializeApp();
     }
@@ -119,7 +66,7 @@ function initializeApp() {
     // Tarla bilgi göstergesi ekle
     const tarlaInfo = document.createElement('div');
     tarlaInfo.className = 'tarla-info';
-    tarlaInfo.innerHTML = 'Çiçekler: <span id="flowerCount">0</span>/' + MAX_FLOWERS;
+    tarlaInfo.innerHTML = '🌸 Çiçekler: <span id="flowerCount">0</span>/' + MAX_FLOWERS;
     document.querySelector('.tarla-container').appendChild(tarlaInfo);
 
     // Modal event listeners
@@ -164,12 +111,14 @@ function initializeApp() {
     // Uygulamayı başlat
     renderFlowers();
     setupRealtimeListener();
+    setupSmoothScroll();
 }
 
 // Rastgele çiçek türü seç
 function getRandomFlowerType() {
     capellaCounter++;
     
+    // Her 30 çiçekte bir Capella şansı
     if (capellaCounter >= 30) {
         capellaCounter = 0;
         return FLOWER_TYPES.CAPELLA;
@@ -184,13 +133,13 @@ function getRandomFlowerType() {
     return commonFlowers[randomIndex];
 }
 
-// Boş pozisyon bul
+// Boş pozisyon bul (daha seyrek yerleşim için)
 function getEmptyPosition() {
-    const gridSize = 6; // 8'den 6'ya düşürüldü (daha az çiçek için)
     const positions = [];
     
-    for (let x = 10; x <= 90; x += 15) { // 10px yerine 15px aralık
-        for (let y = 10; y <= 80; y += 15) { // 10px yerine 15px aralık
+    // Daha seyrek grid (2x büyük çiçekler için)
+    for (let x = 5; x <= 90; x += 15) {
+        for (let y = 5; y <= 85; y += 15) {
             positions.push(`${x}-${y}`);
         }
     }
@@ -246,7 +195,7 @@ function getNextGrowthStage(flower) {
     }
 }
 
-// Çiçek görseli oluştur
+// Çiçek görseli oluştur (2X BÜYÜK)
 function createFlowerElement(flower) {
     const flowerElement = document.createElement('div');
     flowerElement.className = `flower ${flower.flowerType.name.toLowerCase()}`;
@@ -271,7 +220,7 @@ function createFlowerElement(flower) {
     // RESİM YOLU PNG FORMATINDA
     const imagePath = growthStage.image ? growthStage.image : flower.flowerType.image;
     
-    const tooltipText = `${flower.userName} - ${flower.flowerType.name} - ${growthStage.name}${isCapella ? ' 🌟' : ''}`;
+    const tooltipText = `${flower.userName}<br>${flower.flowerType.name} - ${growthStage.name}${isCapella ? ' 🌟' : ''}`;
     
     flowerElement.innerHTML = `
         <img src="${imagePath}" alt="${flower.flowerType.name}" class="flower-image">
@@ -312,7 +261,7 @@ function updateFlowerAppearance(flower, flowerElement) {
     const imagePath = growthStage.image ? growthStage.image : flower.flowerType.image;
     
     const isCapella = flower.flowerType === FLOWER_TYPES.CAPELLA;
-    const tooltipText = `${flower.userName} - ${flower.flowerType.name} - ${growthStage.name}${isCapella ? ' 🌟' : ''}`;
+    const tooltipText = `${flower.userName}<br>${flower.flowerType.name} - ${growthStage.name}${isCapella ? ' 🌟' : ''}`;
     
     flowerElement.innerHTML = `
         <img src="${imagePath}" alt="${flower.flowerType.name}" class="flower-image">
@@ -346,8 +295,8 @@ async function addFlower(userName, code) {
     await db.collection('flowers').add(flower);
     
     const message = flowerType === FLOWER_TYPES.CAPELLA ? 
-        '🎉 Capella çiçeği dikildi! Bu nadir bir çiçek! 🌟' : 
-        'Çiçeğin başarıyla dikildi! 🌱';
+        '🎉 MÜTHİŞ! Capella çiçeği dikildi! 🌟<br>Bu nadir bir çiçek - 30 çiçekte bir görünür!' : 
+        'Çiçeğin başarıyla dikildi! 🌱<br>Büyümesini izle...';
     
     showAlert(message);
 }
@@ -372,7 +321,7 @@ async function renderFlowers() {
         growthIntervals = {};
         
         if (flowers.length === 0) {
-            flowerField.innerHTML = '<p class="no-flowers">Henüz hiç çiçek yok. İlk çiçeği sen dik!</p>';
+            flowerField.innerHTML = '<div class="no-flowers"><h3>Henüz hiç çiçek yok</h3><p>İlk çiçeği sen dik ve tarlayı renklendir! 🌸</p></div>';
             updateFlowerCount();
             return;
         }
@@ -389,7 +338,7 @@ async function renderFlowers() {
     } catch (error) {
         console.error('Çiçekler yüklenirken hata:', error);
         const flowerField = document.getElementById('flowerField');
-        flowerField.innerHTML = '<p class="error">Çiçekler yüklenirken hata oluştu.</p>';
+        flowerField.innerHTML = '<div class="error"><h3>Hata oluştu</h3><p>Çiçekler yüklenirken bir sorun oluştu.</p></div>';
     }
 }
 
@@ -410,12 +359,19 @@ function updateFlowerCount() {
     const flowerCount = getCurrentFlowerCount();
     document.getElementById('flowerCount').textContent = flowerCount;
     
+    const tarlaInfo = document.querySelector('.tarla-info');
     if (flowerCount >= MAX_FLOWERS) {
-        document.querySelector('.tarla-info').style.backgroundColor = '#FF6B6B';
-        document.querySelector('.tarla-info').style.color = 'white';
+        tarlaInfo.style.backgroundColor = '#FF6B6B';
+        tarlaInfo.style.color = 'white';
+        tarlaInfo.style.borderColor = '#FF4757';
+    } else if (flowerCount >= MAX_FLOWERS * 0.8) {
+        tarlaInfo.style.backgroundColor = '#FFA502';
+        tarlaInfo.style.color = 'white';
+        tarlaInfo.style.borderColor = '#FF7F00';
     } else {
-        document.querySelector('.tarla-info').style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-        document.querySelector('.tarla-info').style.color = 'var(--text-color)';
+        tarlaInfo.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        tarlaInfo.style.color = 'var(--text-color)';
+        tarlaInfo.style.borderColor = 'var(--accent-color)';
     }
 }
 
@@ -428,7 +384,7 @@ function getCurrentFlowerCount() {
 function showCode(flower) {
     document.getElementById('codeAuthor').textContent = flower.userName;
     document.getElementById('codeDate').textContent = flower.date;
-    document.getElementById('codeFlower').textContent = flower.flowerType.name;
+    document.getElementById('codeFlower').textContent = `${flower.flowerType.name} - ${FLOWER_TYPES[flower.flowerType.name.toUpperCase()]?.meaning || 'Anlamı bulunamadı'}`;
     document.getElementById('codeDisplay').textContent = flower.code;
     
     const codeModal = document.getElementById('codeModal');
@@ -442,22 +398,40 @@ function showAlert(message) {
     alertModal.style.display = 'flex';
 }
 
+// Smooth scroll
+function setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
 // Sayfa kapatıldığında interval'ları temizle
 window.addEventListener('beforeunload', function() {
     Object.values(growthIntervals).forEach(interval => clearTimeout(interval));
 });
 
-// Sayfa görünürlüğü değiştiğinde kontrol et (performans için)
-document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-        // Sayfa gizlendiğinde interval'ları duraklat
-        Object.values(growthIntervals).forEach(interval => {
-            clearTimeout(interval);
-        });
-    } else {
-        // Sayfa görünür olduğunda çiçekleri yeniden render et
-        if (document.getElementById('flowerField')) {
-            renderFlowers();
-        }
-    }
-});
+// PWA özellikleri için service worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker kaydı başarılı: ', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('ServiceWorker kaydı başarısız: ', error);
+            });
+    });
+}
