@@ -187,11 +187,11 @@ body {
     pointer-events: none;
 }
 
-/* Çiçek Konumlandırma - DÜZ GÖRÜNÜM */
+/* Çiçek Konumlandırma - ÇOK BÜYÜK BOYUT */
 .flower {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     cursor: pointer;
     transition: all 0.5s ease;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
@@ -200,7 +200,7 @@ body {
 }
 
 .flower:hover {
-    transform: scale(1.15);
+    transform: scale(1.1);
     filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
     z-index: 2;
 }
@@ -210,12 +210,6 @@ body {
     height: 100%;
     object-fit: contain;
     transition: all 0.5s ease;
-    /* Daire efekti kaldırıldı */
-    border-radius: 0;
-    padding: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
 }
 
 .flower-tooltip {
@@ -225,11 +219,11 @@ body {
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
-    padding: 10px 18px;
+    padding: 12px 20px;
     border-radius: 15px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     white-space: normal;
-    width: 160px;
+    width: 180px;
     text-align: center;
     opacity: 0;
     transition: all 0.3s ease;
@@ -286,14 +280,14 @@ body {
 
 .flower.capella {
     animation: goldenGlow 2s ease-in-out infinite alternate;
-    width: 180px !important;
-    height: 180px !important;
+    width: 240px !important;
+    height: 240px !important;
 }
 
 .flower.capella .flower-tooltip {
     background: linear-gradient(135deg, #FFD700, #FFA500);
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .add-flower-btn {
@@ -434,7 +428,7 @@ section h2::after {
     max-width: 1200px;
 }
 
-/* Çiçek kartları - DÜZ GÖRÜNÜM */
+/* Çiçek kartları - YENİ TASARIM */
 .flower-card {
     background: white;
     border-radius: 20px;
@@ -453,10 +447,10 @@ section h2::after {
     border-color: var(--accent-color);
 }
 
-/* Çiçek görselleri - DÜZ GÖRÜNÜM */
+/* Çiçek görselleri - BÜYÜK BOYUT */
 .flower-image-container {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -468,12 +462,6 @@ section h2::after {
     height: 100% !important;
     object-fit: contain;
     transition: all 0.3s ease;
-    /* Daire efekti kaldırıldı */
-    border-radius: 0;
-    padding: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
 }
 
 .flower-card:hover .flower-image {
@@ -773,13 +761,19 @@ section h2::after {
     }
     
     .flower {
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
     }
     
     .flower.capella {
-        width: 140px !important;
-        height: 140px !important;
+        width: 180px !important;
+        height: 180px !important;
+    }
+    
+    .flower-tooltip {
+        font-size: 0.9rem;
+        width: 160px;
+        padding: 10px 15px;
     }
     
     .tarla-info {
@@ -810,8 +804,8 @@ section h2::after {
     }
     
     .flower-image-container {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
     }
     
     .flower-info h3 {
@@ -843,8 +837,8 @@ section h2::after {
     }
     
     .flower-image-container {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
     }
     
     .nav-logo {
@@ -857,13 +851,13 @@ section h2::after {
     }
     
     .flower {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
     }
     
     .flower.capella {
-        width: 120px !important;
-        height: 120px !important;
+        width: 150px !important;
+        height: 150px !important;
     }
     
     .flower-tooltip {
