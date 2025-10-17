@@ -20,22 +20,22 @@ try {
 
 const db = firebase.firestore();
 
-// Çiçek türleri - RESİMLER KÖK DİZİNDE
+// Çiçek türleri - PNG FORMATINDA
 const FLOWER_TYPES = {
-    GUL: { name: 'Gül', image: 'gul.jpg', probability: 1 },
-    LALE: { name: 'Lale', image: 'lale.jpg', probability: 1 },
-    ORKIDE: { name: 'Orkide', image: 'orkide.jpg', probability: 1 },
-    PAPATYA: { name: 'Papatya', image: 'papatya.jpg', probability: 1 },
-    ZAMBAK: { name: 'Zambak', image: 'zambak.jpg', probability: 1 },
-    MENEKSE: { name: 'Menekşe', image: 'menekse.jpg', probability: 1 },
-    CAPELLA: { name: 'Capella', image: 'capella.jpg', probability: 1/30 }
+    GUL: { name: 'Gül', image: 'gul.png', probability: 1 },
+    LALE: { name: 'Lale', image: 'lale.png', probability: 1 },
+    ORKIDE: { name: 'Orkide', image: 'orkide.png', probability: 1 },
+    PAPATYA: { name: 'Papatya', image: 'papatya.png', probability: 1 },
+    ZAMBAK: { name: 'Zambak', image: 'zambak.png', probability: 1 },
+    MENEKSE: { name: 'Menekşe', image: 'menekse.png', probability: 1 },
+    CAPELLA: { name: 'Capella', image: 'capella.png', probability: 1/30 }
 };
 
-// Büyüme aşamaları - RESİMLER KÖK DİZİNDE
+// Büyüme aşamaları - PNG FORMATINDA
 const GROWTH_STAGES = {
-    SEED: { name: 'Tohum', image: 'tohum.jpg', duration: 30000 }, // 30 saniye
-    SPROUT: { name: 'Fidan', image: 'fidan.jpg', duration: 60000 }, // 1 dakika
-    BUD: { name: 'Tomurcuk', image: 'tomurcuk.jpg', duration: 90000 }, // 1.5 dakika
+    SEED: { name: 'Tohum', image: 'tohum.png', duration: 30000 }, // 30 saniye
+    SPROUT: { name: 'Fidan', image: 'fidan.png', duration: 60000 }, // 1 dakika
+    BUD: { name: 'Tomurcuk', image: 'tomurcuk.png', duration: 90000 }, // 1.5 dakika
     BLOOM: { name: 'Çiçek', image: null, duration: 0 } // Son aşama - kendi resmi
 };
 
@@ -216,7 +216,7 @@ function createFlowerElement(flower) {
     }
     
     const growthStage = getCurrentGrowthStage(flower);
-    // RESİM YOLU KÖK DİZİNDE
+    // RESİM YOLU PNG FORMATINDA
     const imagePath = growthStage.image ? growthStage.image : flower.flowerType.image;
     
     const tooltipText = `${flower.userName} - ${flower.flowerType.name} - ${growthStage.name}${isCapella ? ' 🌟' : ''}`;
@@ -256,7 +256,7 @@ function setupGrowthTimer(flower, flowerElement) {
 // Çiçek görünümünü güncelle
 function updateFlowerAppearance(flower, flowerElement) {
     const growthStage = getCurrentGrowthStage(flower);
-    // RESİM YOLU KÖK DİZİNDE
+    // RESİM YOLU PNG FORMATINDA
     const imagePath = growthStage.image ? growthStage.image : flower.flowerType.image;
     
     const isCapella = flower.flowerType === FLOWER_TYPES.CAPELLA;
