@@ -20,7 +20,7 @@ try {
 
 const db = firebase.firestore();
 
-// Çiçek türleri
+// Çiçek türleri - RESİMLER KÖK DİZİNDE
 const FLOWER_TYPES = {
     GUL: { name: 'Gül', image: 'gul.jpg', probability: 1 },
     LALE: { name: 'Lale', image: 'lale.jpg', probability: 1 },
@@ -31,7 +31,7 @@ const FLOWER_TYPES = {
     CAPELLA: { name: 'Capella', image: 'capella.jpg', probability: 1/30 }
 };
 
-// Büyüme aşamaları
+// Büyüme aşamaları - RESİMLER KÖK DİZİNDE
 const GROWTH_STAGES = {
     SEED: { name: 'Tohum', image: 'tohum.jpg', duration: 30000 }, // 30 saniye
     SPROUT: { name: 'Fidan', image: 'fidan.jpg', duration: 60000 }, // 1 dakika
@@ -42,8 +42,8 @@ const GROWTH_STAGES = {
 // Global değişkenler
 let capellaCounter = 0;
 let usedPositions = new Set();
-const MAX_FLOWERS = 50; // Maksimum çiçek sayısı
-let growthIntervals = {}; // Büyüme interval'larını saklamak için
+const MAX_FLOWERS = 50;
+let growthIntervals = {};
 
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('flowerField')) {
@@ -118,7 +118,6 @@ function initializeApp() {
 function getRandomFlowerType() {
     capellaCounter++;
     
-    // 30'da 1 Capella çiçeği
     if (capellaCounter >= 30) {
         capellaCounter = 0;
         return FLOWER_TYPES.CAPELLA;
@@ -135,35 +134,26 @@ function getRandomFlowerType() {
 
 // Boş pozisyon bul
 function getEmptyPosition() {
-    const gridSize = 8; // 8x8 grid
+    const gridSize = 8;
     const positions = [];
     
-    // Tüm olası pozisyonları oluştur (kenarlardan uzak)
     for (let x = 10; x <= 90; x += 10) {
         for (let y = 10; y <= 80; y += 10) {
             positions.push(`${x}-${y}`);
         }
     }
     
-    // Kullanılmayan pozisyonları bul
     const availablePositions = positions.filter(pos => !usedPositions.has(pos));
     
     if (availablePositions.length === 0) {
-        return null; // Boş pozisyon yok
+        return null;
     }
     
-    // Rastgele boş pozisyon seç
     const randomPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
     usedPositions.add(randomPos);
     
     const [x, y] = randomPos.split('-').map(Number);
     return { x, y };
-}
-
-// Pozisyonu serbest bırak
-function freePosition(x, y) {
-    const positionKey = `${x}-${y}`;
-    usedPositions.delete(positionKey);
 }
 
 // Mevcut büyüme aşamasını belirle
@@ -226,7 +216,8 @@ function createFlowerElement(flower) {
     }
     
     const growthStage = getCurrentGrowthStage(flower);
-    const imagePath = growthStage.image ? `images/${growthStage.image}` : `images/${flower.flowerType.image}`;
+    // RESİM YOLU KÖK DİZİNDE
+    const imagePath = growthStage.image ? growthStage.image : flower.flowerType.image;
     
     const tooltipText = `${flower.userName} - ${flower.flowerType.name} - ${growthStage.name}${isCapella ? ' 🌟' : ''}`;
     
@@ -265,7 +256,8 @@ function setupGrowthTimer(flower, flowerElement) {
 // Çiçek görünümünü güncelle
 function updateFlowerAppearance(flower, flowerElement) {
     const growthStage = getCurrentGrowthStage(flower);
-    const imagePath = growthStage.image ? `images/${growthStage.image}` : `images/${flower.flowerType.image}`;
+    // RESİM YOLU KÖK DİZİNDE
+    const imagePath = growthStage.image ? growthStage.image : flower.flowerType.image;
     
     const isCapella = flower.flowerType === FLOWER_TYPES.CAPELLA;
     const tooltipText = `${flower.userName} - ${flower.flowerType.name} - ${growthStage.name}${isCapella ? ' 🌟' : ''}`;
@@ -299,10 +291,8 @@ async function addFlower(userName, code) {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     };
     
-    // Firebase'e kaydet
     await db.collection('flowers').add(flower);
     
-    // Başarı mesajı
     const message = flowerType === FLOWER_TYPES.CAPELLA ? 
         '🎉 Capella çiçeği dikildi! Bu nadir bir çiçek! 🌟' : 
         'Çiçeğin başarıyla dikildi! 🌱';
@@ -326,7 +316,6 @@ async function renderFlowers() {
         flowerField.innerHTML = '';
         usedPositions.clear();
         
-        // Growth interval'larını temizle
         Object.values(growthIntervals).forEach(interval => clearTimeout(interval));
         growthIntervals = {};
         
@@ -336,7 +325,6 @@ async function renderFlowers() {
             return;
         }
         
-        // Çiçekleri oluştur
         flowers.forEach(flower => {
             const flowerElement = createFlowerElement(flower);
             if (flowerElement) {
@@ -370,7 +358,6 @@ function updateFlowerCount() {
     const flowerCount = getCurrentFlowerCount();
     document.getElementById('flowerCount').textContent = flowerCount;
     
-    // Tarla doluluk uyarısı
     if (flowerCount >= MAX_FLOWERS) {
         document.querySelector('.tarla-info').style.backgroundColor = '#FF6B6B';
         document.querySelector('.tarla-info').style.color = 'white';
