@@ -6,11 +6,11 @@
     --text-color: #2C3E50;
     --card-color: #FFFFFF;
     --hover-color: #45B7A8;
-    --flower-size: 180px; /* Çiçek boyutunu daha da büyüttük */
+    --flower-size: 180px; 
     --flower-hover-size: 220px;
-    --soil-color: #D2B48C; /* DAHA AÇIK TOPRAK RENGİ */
+    --soil-color: #D2B48C; 
     --soil-light: #E6D3B3;
-    --container-size: 200px; /* Container boyutu sabit */
+    --container-size: 200px; 
 }
 
 * {
