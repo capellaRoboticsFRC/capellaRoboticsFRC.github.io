@@ -187,11 +187,11 @@ body {
     pointer-events: none;
 }
 
-/* Çiçek Konumlandırma - KÜÇÜK BOYUT */
+/* Çiçek Konumlandırma - BÜYÜK BOYUT */
 .flower {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 100px; /* 60px'ten 100px'e büyüttüm */
+    height: 100px; /* 60px'ten 100px'e büyüttüm */
     cursor: pointer;
     transition: all 0.5s ease;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
@@ -200,7 +200,7 @@ body {
 }
 
 .flower:hover {
-    transform: scale(1.3);
+    transform: scale(1.2); /* 1.3'ten 1.2'ye küçülttüm */
     filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
     z-index: 2;
 }
@@ -219,11 +219,11 @@ body {
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
-    padding: 6px 12px;
+    padding: 8px 15px; /* Padding'i büyüttüm */
     border-radius: 15px;
-    font-size: 0.7rem;
+    font-size: 0.8rem; /* Yazı boyutunu büyüttüm */
     white-space: normal;
-    width: 120px;
+    width: 140px; /* Genişliği artırdım */
     text-align: center;
     opacity: 0;
     transition: all 0.3s ease;
@@ -279,8 +279,8 @@ body {
 
 .flower.capella {
     animation: goldenGlow 2s ease-in-out infinite alternate;
-    width: 70px !important;
-    height: 70px !important;
+    width: 120px !important; /* 70px'ten 120px'e büyüttüm */
+    height: 120px !important; /* 70px'ten 120px'e büyüttüm */
 }
 
 .flower.capella .flower-tooltip {
@@ -445,10 +445,10 @@ section h2::after {
     border-color: var(--accent-color);
 }
 
-/* Çiçek görselleri - KÜÇÜK ve DAİRE İÇİNDE */
+/* Çiçek görselleri - BÜYÜK ve DAİRE İÇİNDE */
 .flower-image-container {
-    width: 80px;
-    height: 80px;
+    width: 120px; /* 80px'ten 120px'e büyüttüm */
+    height: 120px; /* 80px'ten 120px'e büyüttüm */
     flex-shrink: 0;
 }
 
@@ -457,7 +457,7 @@ section h2::after {
     height: 100% !important;
     object-fit: contain;
     border-radius: 50%;
-    padding: 15px;
+    padding: 20px; /* 15px'ten 20px'e büyüttüm */
     background: linear-gradient(135deg, #E8F5E8 0%, #F0F8FF 100%);
     border: 3px solid var(--accent-color);
     box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
@@ -766,8 +766,13 @@ section h2::after {
     }
     
     .flower {
-        width: 50px;
-        height: 50px;
+        width: 80px; /* Mobilde 80px */
+        height: 80px; /* Mobilde 80px */
+    }
+    
+    .flower.capella {
+        width: 90px !important; /* Mobilde 90px */
+        height: 90px !important; /* Mobilde 90px */
     }
     
     .tarla-info {
@@ -798,8 +803,12 @@ section h2::after {
     }
     
     .flower-image-container {
-        width: 70px;
-        height: 70px;
+        width: 100px; /* Mobilde 100px */
+        height: 100px; /* Mobilde 100px */
+    }
+    
+    .flower-image {
+        padding: 15px; /* Mobilde biraz küçük */
     }
     
     .inspiration-quote {
@@ -818,8 +827,8 @@ section h2::after {
     }
     
     .flower-image-container {
-        width: 60px;
-        height: 60px;
+        width: 90px; /* Küçük ekranlarda 90px */
+        height: 90px; /* Küçük ekranlarda 90px */
     }
     
     .flower-image {
@@ -833,5 +842,15 @@ section h2::after {
     .mobile-nav-link {
         font-size: 1rem;
         padding: 15px;
+    }
+    
+    .flower {
+        width: 70px; /* Küçük ekranlarda 70px */
+        height: 70px; /* Küçük ekranlarda 70px */
+    }
+    
+    .flower.capella {
+        width: 80px !important; /* Küçük ekranlarda 80px */
+        height: 80px !important; /* Küçük ekranlarda 80px */
     }
 }
