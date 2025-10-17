@@ -114,11 +114,11 @@ body {
     pointer-events: none;
 }
 
-/* Çiçek Konumlandırma */
+/* Çiçek Konumlandırma - KÜÇÜK BOYUT */
 .flower {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
     transition: all 0.5s ease;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
@@ -127,7 +127,7 @@ body {
 }
 
 .flower:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
     filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
     z-index: 2;
 }
@@ -146,10 +146,12 @@ body {
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
-    padding: 8px 15px;
+    padding: 6px 12px;
     border-radius: 15px;
-    font-size: 0.8rem;
-    white-space: nowrap;
+    font-size: 0.7rem;
+    white-space: normal;
+    width: 120px;
+    text-align: center;
     opacity: 0;
     transition: all 0.3s ease;
     pointer-events: none;
@@ -204,6 +206,8 @@ body {
 
 .flower.capella {
     animation: goldenGlow 2s ease-in-out infinite alternate;
+    width: 70px !important;
+    height: 70px !important;
 }
 
 .flower.capella .flower-tooltip {
@@ -317,24 +321,167 @@ section h2::after {
     color: var(--text-color);
 }
 
-/* Çiçek Tarlası Bölümü - YENİ TASARIM */
-.flower-field-section {
-    padding: 100px 0;
-    background: white;
+/* Flowers sayfası için özel stiller */
+.flowers-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    padding: 100px 0 60px;
+    text-align: center;
+    margin-top: 80px;
 }
 
-.flower-list {
+.flowers-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.flowers-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.flowers-grid {
+    padding: 80px 0;
+    background: var(--background-color);
+}
+
+.flowers-grid .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
 }
 
-.flower-list-item {
-    background: var(--card-color);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(46, 139, 87, 0.1);
-    border-left: 4px solid var(--accent-color);
+/* Çiçek kartları - YENİ TASARIM */
+.flower-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(46, 139, 87, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid transparent;
+}
+
+.flower-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(46, 139, 87, 0.2);
+    border-color: var(--accent-color);
+}
+
+/* Çiçek görselleri - KÜÇÜK ve DAİRE İÇİNDE */
+.flower-image-container {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.flower-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 15px;
+    background: linear-gradient(135deg, #E8F5E8 0%, #F0F8FF 100%);
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+    transition: all 0.3s ease;
+}
+
+.flower-card:hover .flower-image {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+/* Çiçek bilgileri */
+.flower-info {
+    flex: 1;
+}
+
+.flower-info h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.flower-meaning {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.flower-description {
+    color: var(--text-color);
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+/* Capella özel stili */
+.capella-special {
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFFAF0 100%);
+    border: 2px solid #FFD700;
+    position: relative;
+    overflow: hidden;
+}
+
+.capella-special::before {
+    content: '🌟 ÖZEL';
+    position: absolute;
+    top: 10px;
+    right: -25px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: white;
+    padding: 5px 30px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+.capella-special .flower-image {
+    border-color: #FFD700;
+    background: linear-gradient(135deg, #FFF9E6, #FFFAF0);
+}
+
+/* İlham bölümü */
+.inspiration-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.inspiration-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.back-to-home {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.back-to-home:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Modal Stilleri - YENİ TASARIM */
@@ -556,8 +703,8 @@ section h2::after {
     }
     
     .flower {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
     
     .tarla-info {
@@ -565,5 +712,54 @@ section h2::after {
         left: 10px;
         font-size: 0.8rem;
         padding: 8px 12px;
+    }
+    
+    .flowers-hero {
+        padding: 80px 0 40px;
+        margin-top: 70px;
+    }
+    
+    .flowers-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .flowers-grid .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .flower-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .flower-image-container {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .inspiration-quote {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flowers-grid .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .flower-card {
+        margin: 0 10px;
+    }
+    
+    .flower-image-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .flower-image {
+        padding: 12px;
     }
 }
