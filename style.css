@@ -6,10 +6,11 @@
     --text-color: #2C3E50;
     --card-color: #FFFFFF;
     --hover-color: #45B7A8;
-    --flower-size: 150px;
-    --flower-hover-size: 180px;
-    --soil-color: #8B4513;
-    --soil-light: #A0522D;
+    --flower-size: 180px; /* Çiçek boyutunu daha da büyüttük */
+    --flower-hover-size: 220px;
+    --soil-color: #D2B48C; /* DAHA AÇIK TOPRAK RENGİ */
+    --soil-light: #E6D3B3;
+    --container-size: 200px; /* Container boyutu sabit */
 }
 
 * {
@@ -82,7 +83,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Tarla Bölümü - GÖRSEL KALDIRILDI, TOPRAK RENGİ */
+/* Tarla Bölümü - DAHA AÇIK RENK */
 .tarla-section {
     margin-top: 80px;
     position: relative;
@@ -93,7 +94,7 @@ body {
     overflow: hidden;
     background: linear-gradient(135deg, var(--soil-color) 0%, var(--soil-light) 100%);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+    box-shadow: 0 10px 30px rgba(210, 180, 140, 0.4);
 }
 
 .tarla-container {
@@ -113,11 +114,11 @@ body {
     pointer-events: none;
 }
 
-/* ÇİÇEKLER - ARKAPLAN SORUNU ÇÖZÜLDÜ */
+/* ÇİÇEKLER - CONTAINER SABİT, ÇİÇEKLER DAHA BÜYÜK */
 .flower {
     position: absolute;
-    width: var(--flower-size);
-    height: var(--flower-size);
+    width: var(--container-size); /* CONTAINER BOYUTU SABİT */
+    height: var(--container-size); /* CONTAINER BOYUTU SABİT */
     cursor: pointer;
     transition: all 0.5s ease;
     filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
@@ -127,25 +128,35 @@ body {
     justify-content: center;
     align-items: center;
     background: transparent !important;
+    /* Container sabit, içerik büyük */
+    overflow: visible;
+}
+
+.flower-image {
+    width: var(--flower-size) !important; /* ÇİÇEK BOYUTU BÜYÜK */
+    height: var(--flower-size) !important; /* ÇİÇEK BOYUTU BÜYÜK */
+    object-fit: cover;
+    transition: all 0.5s ease;
+    background: transparent !important;
+    /* Container'dan taşsın */
+    margin: 0;
+    padding: 0;
+    transform: scale(1.1); /* Ekstra büyütme */
 }
 
 .flower:hover {
-    transform: scale(1.2);
+    transform: scale(1.1); /* Container hover */
     filter: drop-shadow(0 12px 24px rgba(0,0,0,0.5));
     z-index: 2;
 }
 
-.flower-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s ease;
-    background: transparent !important;
+.flower:hover .flower-image {
+    transform: scale(1.3); /* Hover'da çiçek daha da büyük */
 }
 
 .flower-tooltip {
     position: absolute;
-    bottom: 100%;
+    bottom: 110%; /* Container'dan daha yukarı */
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
@@ -164,7 +175,7 @@ body {
 
 .flower:hover .flower-tooltip {
     opacity: 1;
-    transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(-5px);
 }
 
 /* Capella Çiçeği Özel Animasyon */
@@ -222,19 +233,26 @@ body {
 
 .flower.capella {
     animation: goldenGlow 1.5s ease-in-out infinite alternate;
-    width: calc(var(--flower-size) * 1.2);
-    height: calc(var(--flower-size) * 1.2);
+    /* Capella container da aynı boyutta */
+    width: var(--container-size);
+    height: var(--container-size);
     background: transparent !important;
 }
 
 .flower.capella .flower-image {
+    width: calc(var(--flower-size) * 1.3) !important; /* Capella daha büyük */
+    height: calc(var(--flower-size) * 1.3) !important;
     object-fit: cover;
     background: transparent !important;
+    transform: scale(1.15);
 }
 
 .flower.capella:hover {
-    transform: scale(1.3);
-    animation: goldenGlow 0.8s ease-in-out infinite alternate, sparkleEffect 0.6s ease-in-out infinite;
+    transform: scale(1.15); /* Container hover */
+}
+
+.flower.capella:hover .flower-image {
+    transform: scale(1.4); /* Hover'da Capella daha da büyük */
 }
 
 .flower.capella .flower-tooltip {
@@ -287,7 +305,7 @@ body {
     line-height: 1.4;
 }
 
-/* Toprak dokusu */
+/* Toprak dokusu - DAHA AÇIK RENGE UYGUN */
 .tarla-section::before {
     content: '';
     position: absolute;
@@ -296,8 +314,8 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(0,0,0,0.1) 1px, transparent 1px);
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(0,0,0,0.05) 1px, transparent 1px);
     background-size: 50px 50px, 30px 30px;
     pointer-events: none;
 }
@@ -695,13 +713,23 @@ section h2::after {
     }
     
     .flower {
-        width: 120px;
-        height: 120px;
+        width: 160px; /* Mobile'de container boyutu */
+        height: 160px;
+    }
+    
+    .flower-image {
+        width: 140px !important; /* Mobile'de çiçek boyutu */
+        height: 140px !important;
     }
     
     .flower.capella {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
+    }
+    
+    .flower.capella .flower-image {
+        width: 150px !important;
+        height: 150px !important;
     }
     
     .tarla-info {
