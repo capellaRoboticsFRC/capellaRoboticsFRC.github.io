@@ -34,10 +34,9 @@
         </div>
     </section>
 
-    <!-- Çiçek Kartları -->
+    <!-- Çiçek Kartları - ESKİ GÜZEL TASARIM GERİ GETİRİLDİ -->
     <section class="flowers-grid">
         <div class="container">
-            <!-- Tüm resimler 2x büyük gösterim -->
             <div class="flower-card">
                 <img src="gul.png" alt="Gül" class="flower-image">
                 <div class="flower-info">
@@ -128,17 +127,32 @@
     </section>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
     <script>
         // Hamburger menü aç-kapa
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.querySelector('.nav-menu');
+        
         if (hamburger && navMenu) {
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
         }
+
+        // Sayfa yüklendiğinde kartlara animasyon ekle
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.flower-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
     </script>
 </body>
 </html>
