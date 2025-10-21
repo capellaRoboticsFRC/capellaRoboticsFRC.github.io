@@ -6,14 +6,8 @@
     --text-color: #2C3E50;
     --card-color: #FFFFFF;
     --hover-color: #45B7A8;
-    --flower-size: 180px;
-    --flower-hover-size: 220px;
-    --soil-color: #D2B48C;
-    --soil-light: #E6D3B3;
-    --container-size: 200px;
 }
 
-/* Genel Reset */
 * {
     margin: 0;
     padding: 0;
@@ -34,7 +28,7 @@ body {
     padding: 0 20px;
 }
 
-/* 🔹 Navigasyon */
+/* Navigasyon - YENİ TASARIM */
 .navbar {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
     position: fixed;
@@ -84,91 +78,31 @@ body {
     transform: translateY(-2px);
 }
 
-/* 🔸 Hamburger Menü */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    width: 30px;
-    height: 22px;
-    justify-content: space-between;
-}
-
-.hamburger span {
-    background: white;
-    height: 3px;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* 🔸 Mobil Menü */
-.mobile-menu {
-    display: none;
-    flex-direction: column;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    position: absolute;
-    top: 80px;
-    width: 100%;
-    z-index: 999;
-    text-align: center;
-}
-
-.mobile-menu.active {
-    display: flex;
-}
-
-.mobile-nav-item {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 15px 0;
-}
-
-.mobile-nav-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-/* 🔹 Tarla Bölümü */
+/* Tarla Bölümü - YENİ TASARIM */
 .tarla-section {
     margin-top: 80px;
     position: relative;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: visible;
-    background: linear-gradient(135deg, var(--soil-color) 0%, var(--soil-light) 100%);
+    overflow: hidden;
+    background: linear-gradient(135deg, #E8F5E8 0%, #F0F8FF 100%);
 }
 
 .tarla-container {
     position: relative;
-    width: 95%;
-    height: 90%;
-    border: 6px solid var(--accent-color);
-    border-radius: 25px;
-    overflow: visible;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
     box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
-    background-color: var(--soil-light);
 }
 
 .tarla-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.9;
-    border-radius: 20px;
-    pointer-events: none;
 }
 
 .flower-field {
@@ -180,51 +114,46 @@ body {
     pointer-events: none;
 }
 
-/* 🔸 Çiçekler */
+/* Çiçek Konumlandırma */
 .flower {
     position: absolute;
-    width: var(--container-size);
-    height: var(--container-size);
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     transition: all 0.5s ease;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    z-index: 1;
     pointer-events: auto;
-    z-index: 1100;
 }
 
 .flower:hover {
-    transform: scale(1.1);
-    z-index: 2100;
+    transform: scale(1.2);
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+    z-index: 2;
 }
 
 .flower-image {
-    width: var(--flower-size);
-    height: var(--flower-size);
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     transition: all 0.5s ease;
 }
 
-.flower:hover .flower-image {
-    transform: scale(1.3);
-}
-
-/* Tooltip - EN ÜSTE ALINDI */
 .flower-tooltip {
     position: absolute;
-    bottom: 110%;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
-    padding: 10px 20px;
+    padding: 8px 15px;
     border-radius: 15px;
-    font-weight: bold;
+    font-size: 0.8rem;
+    white-space: nowrap;
     opacity: 0;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    z-index: 2200; /* EN ÜSTE */
     pointer-events: none;
-    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .flower:hover .flower-tooltip {
@@ -232,10 +161,14 @@ body {
     transform: translateX(-50%) translateY(-5px);
 }
 
-/* 🔸 Çiçek Animasyonları */
+/* Capella Çiçeği Özel Animasyon */
 @keyframes goldenGlow {
-    0% { filter: drop-shadow(0 0 5px rgba(255,215,0,0.5)); }
-    100% { filter: drop-shadow(0 0 20px rgba(255,215,0,0.9)); }
+    0% {
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    }
+    100% {
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+    }
 }
 
 @keyframes sparkleEffect {
@@ -278,22 +211,6 @@ body {
     font-weight: bold;
 }
 
-/* 🔸 Tarla Bilgi Kutusu */
-.tarla-info {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px 25px;
-    border-radius: 20px;
-    font-size: 1.1rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    font-weight: bold;
-    border: 3px solid var(--accent-color);
-    color: var(--text-color);
-}
-
-/* 🔸 Çiçek Ekle Butonu */
 .add-flower-btn {
     position: absolute;
     bottom: 50px;
@@ -301,7 +218,7 @@ body {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #FF8E8E 100%);
     color: white;
     display: flex;
     justify-content: center;
@@ -309,8 +226,8 @@ body {
     font-size: 2.5rem;
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-    border: none;
     transition: all 0.3s ease;
+    border: none;
     z-index: 10;
     pointer-events: auto;
 }
@@ -320,128 +237,28 @@ body {
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
 }
 
-/* 🔹 Çiçek Kartları Bölümü - ESKİ TATLI TASARIM */
-.flowers-hero {
-    padding: 120px 0 60px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    color: white;
+/* Bölüm Başlıkları */
+section h2 {
     text-align: center;
-}
-
-.flowers-hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.flowers-hero p {
-    font-size: 1.3rem;
-    opacity: 0.9;
-}
-
-.flowers-grid {
-    padding: 80px 0;
-    background: var(--background-color);
-}
-
-.flowers-grid .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.flower-card {
-    background: var(--card-color);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(46, 139, 87, 0.1);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    margin-bottom: 0;
-}
-
-.flower-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-color);
-    box-shadow: 0 20px 40px rgba(78, 205, 196, 0.2);
-}
-
-.flower-image {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    padding: 30px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-bottom: 3px solid var(--accent-color);
-}
-
-.flower-info {
-    padding: 30px;
-}
-
-.flower-info h3 {
+    margin-bottom: 50px;
+    font-size: 2.8rem;
     color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.flower-meaning {
-    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    display: inline-block;
-    font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
-}
-
-.flower-description {
-    color: var(--text-color);
-    line-height: 1.7;
-    font-size: 1.1rem;
-    text-align: left;
-}
-
-/* Capella Özel Kart */
-.flower-card.capella-special {
-    border: 3px solid #FFD700;
-    background: linear-gradient(135deg, #FFF9E6 0%, #FFF0C2 100%);
     position: relative;
-    overflow: hidden;
 }
 
-.flower-card.capella-special::before {
-    content: '🌟 ÖZEL';
+section h2::after {
+    content: '';
     position: absolute;
-    top: 15px;
-    right: -30px;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: white;
-    padding: 8px 40px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transform: rotate(45deg);
-    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    border-radius: 2px;
 }
 
-.flower-card.capella-special .flower-info h3 {
-    color: #B8860B;
-    text-shadow: 0 2px 4px rgba(255, 215, 0, 0.2);
-}
-
-.flower-card.capella-special .flower-meaning {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-}
-
-/* 🔹 Diğer Bölümler */
+/* Hakkımızda Bölümü - YENİ TASARIM */
 .about-section {
     padding: 100px 0;
     background: white;
@@ -478,6 +295,7 @@ body {
     font-size: 1.5rem;
 }
 
+/* Proje Bölümü - YENİ TASARIM */
 .project-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #F8FDFF 0%, #F0F8F0 100%);
@@ -499,44 +317,27 @@ body {
     color: var(--text-color);
 }
 
-/* 🔹 İlham Bölümü */
-.inspiration-section {
-    padding: 80px 0;
+/* Çiçek Tarlası Bölümü - YENİ TASARIM */
+.flower-field-section {
+    padding: 100px 0;
     background: white;
-    text-align: center;
 }
 
-.inspiration-quote {
-    font-size: 1.4rem;
-    font-style: italic;
-    color: var(--text-color);
-    max-width: 800px;
-    margin: 0 auto 40px;
-    line-height: 1.8;
-    padding: 30px;
-    background: var(--background-color);
+.flower-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.flower-list-item {
+    background: var(--card-color);
+    padding: 20px;
     border-radius: 15px;
-    border-left: 5px solid var(--accent-color);
+    box-shadow: 0 5px 15px rgba(46, 139, 87, 0.1);
+    border-left: 4px solid var(--accent-color);
 }
 
-.back-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-    color: white;
-    padding: 15px 30px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-}
-
-.back-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-}
-
-/* 🔹 Modal Stilleri */
+/* Modal Stilleri - YENİ TASARIM */
 .modal {
     display: none;
     position: fixed;
@@ -693,51 +494,33 @@ body {
     border: 1px solid #f5c6cb;
 }
 
-/* Bölüm Başlıkları */
-section h2 {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 2.8rem;
-    color: var(--primary-color);
-    position: relative;
-}
-
-section h2::after {
-    content: '';
+/* Tarla doluluk göstergesi */
+.tarla-info {
     position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-    border-radius: 2px;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 5;
 }
 
-/* 🔹 Responsive Tasarım */
-@media (max-width: 1200px) {
-    .flowers-grid .container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
+/* Responsive Tasarım */
 @media (max-width: 768px) {
-    .hamburger { 
-        display: flex; 
-    }
-    
-    .nav-menu { 
-        display: none; 
-    }
-    
-    .nav-menu.active {
-        display: flex;
+    .nav-menu {
         flex-direction: column;
         position: absolute;
         top: 80px;
         left: 0;
         width: 100%;
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        display: none;
+    }
+    
+    .nav-menu.active {
+        display: flex;
     }
     
     .nav-item {
@@ -746,28 +529,6 @@ section h2::after {
         text-align: center;
         padding: 15px 0;
         border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .tarla-container {
-        width: 95%;
-        height: 85%;
-    }
-    
-    .flower {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .flower-image {
-        width: 130px;
-        height: 130px;
-    }
-    
-    .tarla-info {
-        font-size: 0.9rem;
-        padding: 10px 15px;
-        top: 10px;
-        left: 10px;
     }
     
     .about-content {
@@ -794,38 +555,15 @@ section h2::after {
         padding: 30px 20px;
     }
     
-    .flowers-grid .container {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    .flower {
+        width: 60px;
+        height: 60px;
     }
     
-    .flower-image {
-        height: 200px;
-        padding: 20px;
-    }
-    
-    .flower-info {
-        padding: 20px;
-    }
-    
-    .flower-info h3 {
-        font-size: 1.5rem;
-    }
-    
-    .flowers-hero {
-        padding: 100px 0 40px;
-    }
-    
-    .flowers-hero h1 {
-        font-size: 2.2rem;
-    }
-    
-    .flowers-hero p {
-        font-size: 1.1rem;
-    }
-    
-    .inspiration-quote {
-        font-size: 1.1rem;
-        padding: 20px;
+    .tarla-info {
+        top: 10px;
+        left: 10px;
+        font-size: 0.8rem;
+        padding: 8px 12px;
     }
 }
