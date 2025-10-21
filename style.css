@@ -34,7 +34,7 @@ body {
     padding: 0 20px;
 }
 
-/* 🔹 Navigasyon - BİRLEŞTİRİLMİŞ TASARIM */
+/* 🔹 Navigasyon */
 .navbar {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
     position: fixed;
@@ -139,7 +139,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* 🔹 Tarla Bölümü - BİRLEŞTİRİLMİŞ TASARIM */
+/* 🔹 Tarla Bölümü - ESKİ GÜZEL TASARIM */
 .tarla-section {
     margin-top: 80px;
     position: relative;
@@ -157,7 +157,7 @@ body {
     height: 90%;
     border: 6px solid var(--accent-color);
     border-radius: 25px;
-    overflow: visible; /* tooltip görünür */
+    overflow: visible;
     box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
     background-color: var(--soil-light);
 }
@@ -180,7 +180,7 @@ body {
     pointer-events: none;
 }
 
-/* 🔸 Çiçekler - BİRLEŞTİRİLMİŞ TASARIM */
+/* 🔸 Çiçekler - ESKİ KART TASARIMI */
 .flower {
     position: absolute;
     width: var(--container-size);
@@ -194,7 +194,7 @@ body {
 
 .flower:hover {
     transform: scale(1.1);
-    z-index: 2100; /* tooltip üstte */
+    z-index: 2100;
 }
 
 .flower-image {
@@ -208,7 +208,7 @@ body {
     transform: scale(1.3);
 }
 
-/* Tooltip görünürlük ayarı */
+/* Tooltip - EN ÜSTE ALINDI */
 .flower-tooltip {
     position: absolute;
     bottom: 110%;
@@ -222,8 +222,9 @@ body {
     opacity: 0;
     transition: all 0.3s ease;
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    z-index: 2200; /* en üstte */
+    z-index: 2200; /* EN ÜSTE */
     pointer-events: none;
+    white-space: nowrap;
 }
 
 .flower:hover .flower-tooltip {
@@ -231,7 +232,7 @@ body {
     transform: translateX(-50%) translateY(-5px);
 }
 
-/* 🔸 Çiçek Animasyonları - BİRLEŞTİRİLMİŞ */
+/* 🔸 Çiçek Animasyonları */
 @keyframes goldenGlow {
     0% { filter: drop-shadow(0 0 5px rgba(255,215,0,0.5)); }
     100% { filter: drop-shadow(0 0 20px rgba(255,215,0,0.9)); }
@@ -292,7 +293,7 @@ body {
     color: var(--text-color);
 }
 
-/* 🔸 Çiçek Ekle Butonu - BİRLEŞTİRİLMİŞ */
+/* 🔸 Çiçek Ekle Butonu */
 .add-flower-btn {
     position: absolute;
     bottom: 50px;
@@ -319,10 +320,13 @@ body {
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
 }
 
-/* 🔹 Diğer Bölümler - EKSİKLERİ TAMAMLAMA */
+/* 🔹 Çiçek Kartları Bölümü - ESKİ GÜZEL TASARIM GERİ GETİRİLDİ */
+.flowers-section {
+    padding: 100px 0;
+    background: white;
+}
 
-/* Bölüm Başlıkları */
-section h2 {
+.flowers-section h2 {
     text-align: center;
     margin-bottom: 50px;
     font-size: 2.8rem;
@@ -330,7 +334,7 @@ section h2 {
     position: relative;
 }
 
-section h2::after {
+.flowers-section h2::after {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -342,7 +346,60 @@ section h2::after {
     border-radius: 2px;
 }
 
-/* Hakkımızda Bölümü */
+.flower-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.flower-card {
+    background: var(--card-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(46, 139, 87, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.flower-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 40px rgba(78, 205, 196, 0.2);
+}
+
+.flower-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.flower-card-content {
+    padding: 25px;
+}
+
+.flower-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.flower-card p {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.flower-card-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+/* 🔹 Diğer Bölümler */
 .about-section {
     padding: 100px 0;
     background: white;
@@ -379,7 +436,6 @@ section h2::after {
     font-size: 1.5rem;
 }
 
-/* Proje Bölümü */
 .project-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #F8FDFF 0%, #F0F8F0 100%);
@@ -399,26 +455,6 @@ section h2::after {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-color);
-}
-
-/* Çiçek Tarlası Bölümü */
-.flower-field-section {
-    padding: 100px 0;
-    background: white;
-}
-
-.flower-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.flower-list-item {
-    background: var(--card-color);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(46, 139, 87, 0.1);
-    border-left: 4px solid var(--accent-color);
 }
 
 /* Modal Stilleri */
@@ -530,55 +566,7 @@ section h2::after {
     box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
 }
 
-/* Kod Görüntüleme Modalı */
-.code-info {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #eee;
-}
-
-.code-info p {
-    margin-bottom: 5px;
-}
-
-#codeDisplay {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    overflow-x: auto;
-    font-family: 'Courier New', monospace;
-    white-space: pre-wrap;
-    border: 1px solid #e9ecef;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-/* Yükleme göstergesi */
-.loading {
-    text-align: center;
-    padding: 40px;
-    color: var(--text-color);
-    font-style: italic;
-    font-size: 1.1rem;
-}
-
-.no-flowers {
-    text-align: center;
-    padding: 60px;
-    color: #888;
-    font-size: 1.2rem;
-}
-
-.error {
-    text-align: center;
-    padding: 20px;
-    color: #e74c3c;
-    background-color: #ffeaea;
-    border-radius: 10px;
-    border: 1px solid #f5c6cb;
-}
-
-/* 🔹 Responsive Tasarım - BİRLEŞTİRİLMİŞ */
+/* 🔹 Responsive Tasarım */
 @media (max-width: 768px) {
     .hamburger { 
         display: flex; 
@@ -652,8 +640,7 @@ section h2::after {
         padding: 30px 20px;
     }
     
-    .flower {
-        width: 60px;
-        height: 60px;
+    .flower-cards {
+        grid-template-columns: 1fr;
     }
 }
