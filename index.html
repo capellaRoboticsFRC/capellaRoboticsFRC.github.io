@@ -11,23 +11,24 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">Future in Bloom</div>
+            
+            <!-- Hamburger Menü -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#anasayfa" class="nav-link">Ana Sayfa</a></li>
                 <li class="nav-item"><a href="#hakkimizda" class="nav-link">Hakkımızda</a></li>
                 <li class="nav-item"><a href="flowers.html" class="nav-link">Çiçekler</a></li>
                 <li class="nav-item"><a href="#tarla" class="nav-link">Tarla</a></li>
             </ul>
-            
-            <!-- Hamburger Menu -->
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
+    <!-- Mobil Menü -->
     <div class="mobile-menu" id="mobileMenu">
         <ul class="mobile-nav-menu">
             <li class="mobile-nav-item"><a href="#anasayfa" class="mobile-nav-link">Ana Sayfa</a></li>
@@ -37,14 +38,14 @@
         </ul>
     </div>
     
+    <!-- Ana Tarla Bölümü -->
     <section id="anasayfa" class="tarla-section">
         <div class="tarla-container">
+            <!-- Tarla Görseli -->
+            <img src="tarla.png" alt="Tarla" class="tarla-image">
             <div class="flower-field" id="flowerField"></div>
             <div class="add-flower-btn" id="addFlowerBtn"><span>+</span></div>
-            <div class="tarla-info">
-                🌸 Çiçekler: <span id="flowerCount">0</span>/30<br>
-                🎯 Sonraki Capella: 30. çiçekte
-            </div>
+            <div class="tarla-info">🌸 Çiçekler: <span id="flowerCount">0</span>/30</div>
         </div>
     </section>
 
@@ -126,5 +127,28 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics-compat.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        // Hamburger menü aç-kapa
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        // Mobil menü bağlantılarına tıklanınca menüyü kapat
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
