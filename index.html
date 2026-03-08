@@ -1,154 +1,163 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Future in Bloom - Capella FRC</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Capella in Bloom</title>
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <!-- Üst Navigasyon -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">Future in Bloom</div>
-            
-            <!-- Hamburger Menü -->
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
 
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#anasayfa" class="nav-link">Ana Sayfa</a></li>
-                <li class="nav-item"><a href="#hakkimizda" class="nav-link">Hakkımızda</a></li>
-                <li class="nav-item"><a href="flowers.html" class="nav-link">Çiçekler</a></li>
-                <li class="nav-item"><a href="#tarla" class="nav-link">Tarla</a></li>
-            </ul>
-        </div>
-    </nav>
+<header>
+    <h1>🌸 Capella in Bloom</h1>
 
-    <!-- Mobil Menü -->
-    <div class="mobile-menu" id="mobileMenu">
-        <ul class="mobile-nav-menu">
-            <li class="mobile-nav-item"><a href="#anasayfa" class="mobile-nav-link">Ana Sayfa</a></li>
-            <li class="mobile-nav-item"><a href="#hakkimizda" class="mobile-nav-link">Hakkımızda</a></li>
-            <li class="mobile-nav-item"><a href="flowers.html" class="mobile-nav-link">Çiçekler</a></li>
-            <li class="mobile-nav-item"><a href="#tarla" class="mobile-nav-link">Tarla</a></li>
+    <nav>
+        <ul>
+            <li><a href="#home">Ana Sayfa</a></li>
+            <li><a href="#flowers">Çiçek Türleri</a></li>
+            <li><a href="#about">Hakkımızda</a></li>
         </ul>
-    </div>
-    
-    <!-- Ana Tarla Bölümü -->
-    <section id="anasayfa" class="tarla-section">
-        <div class="tarla-container">
-            <!-- Tarla Görseli -->
-            <img src="tarla.png" alt="Tarla" class="tarla-image">
-            <div class="flower-field" id="flowerField"></div>
-            <div class="add-flower-btn" id="addFlowerBtn"><span>+</span></div>
-            <div class="tarla-info">🌸 Çiçekler: <span id="flowerCount">0</span>/30</div>
-        </div>
-    </section>
+    </nav>
+</header>
 
-    <!-- Hakkımızda Bölümü -->
-    <section id="hakkimizda" class="about-section">
-        <div class="container">
-            <h2>Hakkımızda</h2>
-            <div class="about-content">
-                <div class="about-item">
-                    <h3>Takımımız</h3>
-                    <p>Capella FRC olarak, robotik ve teknoloji alanında gençleri güçlendirmeyi hedefliyoruz.</p>
-                </div>
-                <div class="about-item">
-                    <h3>Misyonumuz</h3>
-                    <p>Kızların ve genç kadınların STEM alanlarında daha fazla yer almasını sağlamak.</p>
-                </div>
-                <div class="about-item">
-                    <h3>Vizyonumuz</h3>
-                    <p>Daha kapsayıcı ve çeşitliliğe sahip bir teknoloji endüstrisi yaratmak.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Proje Açıklama Bölümü -->
-    <section id="proje" class="project-section">
-        <div class="container">
-            <h2>Projemiz</h2>
-            <div class="project-content">
-                <p>Bir Capella FRC takımı olarak, dünyanın dört bir yanından kızların da yazılımda ve teknolojide aktif rol almasını istiyoruz.</p>
-                <p>Yazılan her kod bir çiçeğe dönüşecek. Tohum olarak başlayıp zamanla çiçeğe dönüşecek.</p>
-            </div>
-        </div>
-    </section>
+<section id="home">
 
-    <!-- Modal'lar -->
-    <div class="modal" id="flowerModal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeModal">&times;</span>
-            <h2>Yeni Çiçek Ekle</h2>
-            <form id="flowerForm">
-                <div class="form-group">
-                    <label for="userName">Adınız:</label>
-                    <input type="text" id="userName" required>
-                </div>
-                <div class="form-group">
-                    <label for="code">Kodunuz:</label>
-                    <textarea id="code" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Çiçeği Dik</button>
-            </form>
-        </div>
-    </div>
+<h2>Kodunu Yaz, Çiçeğini Dik</h2>
 
-    <div class="modal" id="codeModal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeCodeModal">&times;</span>
-            <h2>Yazılan Kod</h2>
-            <div class="code-info">
-                <p><strong>Diken:</strong> <span id="codeAuthor"></span></p>
-                <p><strong>Tarih:</strong> <span id="codeDate"></span></p>
-                <p><strong>Çiçek:</strong> <span id="codeFlower"></span></p>
-            </div>
-            <pre id="codeDisplay"></pre>
-        </div>
-    </div>
+<p>
+Kod yazarak tarlaya çiçek ekleyebilirsin!
+Basit bir JavaScript fonksiyonu yaz ve çalıştır.
+</p>
 
-    <div class="modal" id="alertModal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeAlertModal">&times;</span>
-            <h2>Tarla Doldu! 🌸</h2>
-            <p id="alertMessage"></p>
-            <button class="submit-btn" id="closeAlertBtn">Tamam</button>
-        </div>
-    </div>
+<textarea id="codeInput" placeholder="function growFlower(){ return true; }"></textarea>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics-compat.js"></script>
-    <script src="script.js"></script>
+<button onclick="runCode()">Kodu Çalıştır 🌱</button>
 
-    <script>
-        // Hamburger menü aç-kapa
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        const mobileMenu = document.getElementById('mobileMenu');
+<div id="field"></div>
 
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-            });
-        }
+</section>
 
-        // Mobil menü bağlantılarına tıklanınca menüyü kapat
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
-        });
-    </script>
+
+<section id="flowers">
+
+<h2>Çiçek Türleri</h2>
+
+<div class="flower-info">
+
+<h3>🌻 Ayçiçeği</h3>
+<p>Güneşi takip eden ve parlak sarı yapraklarıyla bilinen çiçektir.</p>
+
+<h3>🌷 Lale</h3>
+<p>Baharı simgeler ve özellikle Hollanda ile özdeşleşmiştir.</p>
+
+<h3>🌹 Gül</h3>
+<p>Aşkın ve zarafetin sembolüdür.</p>
+
+<h3>Capella Çiçeği</h3>
+<p>Çok nadir bir çiçektir. Görülme sıklığı 1/30.</p>
+
+<h3>🌼 Papatya</h3>
+<p>Beyaz yaprakları ve sarı merkeziyle tanınır. Sadeliğin ve saflığın sembolüdür.</p>
+
+<h3>🌸 Kiraz Çiçeği (Sakura)</h3>
+<p>Japon kültüründe hayatın geçiciliğini simgeler. İlkbaharda ağaçlar pembe çiçeklerle kaplanır.</p>
+
+<h3>🌺 Hibiskus</h3>
+<p>Tropikal bölgelerde yetişen büyük ve renkli çiçeklere sahiptir. Çay ve doğal içeceklerde kullanılabilir.</p>
+
+<h3>🪻 Lavanta</h3>
+<p>Mor renkli ve hoş kokulu bir bitkidir. Rahatlatıcı etkisi nedeniyle aromaterapide kullanılır.</p>
+
+<section id="flowers">
+
+<h2>Çiçek Türleri</h2>
+
+<div class="flower-info">
+
+</div>
+
+</section>
+
+</div>
+
+</section>
+
+
+<section id="about">
+
+<h2>Hakkımızda</h2>
+
+<div class="mission-vision">
+
+<div class="card">
+<h3>Vizyonumuz</h3>
+<p>
+Capella in Bloom ile kızların teknolojiye olan ilgisini artırmayı,
+kod yazmayı doğa ile birleştirerek eğlenceli ve yaratıcı bir öğrenme
+ortamı oluşturmayı hedefliyoruz.
+</p>
+</div>
+
+<div class="card">
+<h3>Misyonumuz</h3>
+<p>
+Gençlerin yazılım öğrenmesini teşvik eden,
+yaratıcılığı destekleyen ve herkesin kod yazabileceğini
+gösteren interaktif bir platform geliştirmek.
+</p>
+</div>
+
+</div>
+
+
+<h2>Takımımız</h2>
+
+<div class="team">
+
+<div class="team-member right-image">
+
+<img src="foto1.jpg">
+
+<div class="text">
+<h3>Kurucu</h3>
+<p>
+Capella in Bloom fikrini geliştiren ve projenin yazılım kısmını
+yürüten ekip üyesi.
+</p>
+</div>
+
+</div>
+
+
+<div class="team-member left-image">
+
+<img src="foto2.jpg">
+
+<div class="text">
+<h3>Tasarımcı</h3>
+<p>
+Web sitesinin tasarımı, kullanıcı deneyimi ve görsel
+düzenlemeleri üzerinde çalışır.
+</p>
+</div>
+
+</div>
+
+
+<div class="team-photo">
+
+<img src="team.jpg">
+<p>Capella in Bloom Takımı</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
