@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>Capella in Bloom</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capella in Bloom</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
     <h1>🌸 Capella in Bloom</h1>
-
     <nav>
         <ul>
             <li><a href="#home">Ana Sayfa</a></li>
@@ -20,144 +19,92 @@
     </nav>
 </header>
 
-
 <section id="home">
+    <h2>Kodunu Yaz, Çiçeğini Dik</h2>
+    <p>Kod yazarak tarlaya çiçek ekleyebilirsin! Basit bir JavaScript fonksiyonu yaz ve çalıştır.</p>
 
-<h2>Kodunu Yaz, Çiçeğini Dik</h2>
+    <textarea id="codeInput" placeholder="function growFlower(){ return true; }"></textarea>
+    <button onclick="runCode()">Kodu Çalıştır 🌱</button>
 
-<p>
-Kod yazarak tarlaya çiçek ekleyebilirsin!
-Basit bir JavaScript fonksiyonu yaz ve çalıştır.
-</p>
-
-<textarea id="codeInput" placeholder="function growFlower(){ return true; }"></textarea>
-
-<button onclick="runCode()">Kodu Çalıştır 🌱</button>
-
-<div id="field"></div>
-
+    <div id="field"></div>
 </section>
-
 
 <section id="flowers">
-
-<h2>Çiçek Türleri</h2>
-
-<div class="flower-info">
-
-<h3>🌻 Ayçiçeği</h3>
-<p>Güneşi takip eden ve parlak sarı yapraklarıyla bilinen çiçektir.</p>
-
-<h3>🌷 Lale</h3>
-<p>Baharı simgeler ve özellikle Hollanda ile özdeşleşmiştir.</p>
-
-<h3>🌹 Gül</h3>
-<p>Aşkın ve zarafetin sembolüdür.</p>
-
-<h3>Capella Çiçeği</h3>
-<p>Çok nadir bir çiçektir. Görülme sıklığı 1/30.</p>
-
-<h3>🌼 Papatya</h3>
-<p>Beyaz yaprakları ve sarı merkeziyle tanınır. Sadeliğin ve saflığın sembolüdür.</p>
-
-<h3>🌸 Kiraz Çiçeği (Sakura)</h3>
-<p>Japon kültüründe hayatın geçiciliğini simgeler. İlkbaharda ağaçlar pembe çiçeklerle kaplanır.</p>
-
-<h3>🌺 Hibiskus</h3>
-<p>Tropikal bölgelerde yetişen büyük ve renkli çiçeklere sahiptir. Çay ve doğal içeceklerde kullanılabilir.</p>
-
-<h3>🪻 Lavanta</h3>
-<p>Mor renkli ve hoş kokulu bir bitkidir. Rahatlatıcı etkisi nedeniyle aromaterapide kullanılır.</p>
-
-<section id="flowers">
-
-<h2>Çiçek Türleri</h2>
-
-<div class="flower-info">
-
-</div>
-
+    <h2>🌼 Çiçek Türleri</h2>
+    <div class="flower-info">
+        <div class="flower-card">
+            <h3>🌻 Ayçiçeği</h3>
+            <p>Güneşi takip eden ve parlak sarı yapraklarıyla bilinen çiçektir.</p>
+        </div>
+        <div class="flower-card">
+            <h3>🌷 Lale</h3>
+            <p>Baharı simgeler ve özellikle Hollanda ile özdeşleşmiştir.</p>
+        </div>
+        <div class="flower-card">
+            <h3>🌹 Gül</h3>
+            <p>Aşkın ve zarafetin sembolüdür.</p>
+        </div>
+        <div class="flower-card">
+            <h3>⭐ Capella Çiçeği</h3>
+            <p>Çok nadir bir çiçektir. Görülme sıklığı 1/30.</p>
+        </div>
+        <div class="flower-card">
+            <h3>🌼 Papatya</h3>
+            <p>Beyaz yaprakları ve sarı merkeziyle tanınır. Sadeliğin ve saflığın sembolüdür.</p>
+        </div>
+        <div class="flower-card">
+            <h3>🌸 Kiraz Çiçeği (Sakura)</h3>
+            <p>Japon kültüründe hayatın geçiciliğini simgeler. İlkbaharda ağaçlar pembe çiçeklerle kaplanır.</p>
+        </div>
+        <div class="flower-card">
+            <h3>🌺 Hibiskus</h3>
+            <p>Tropikal bölgelerde yetişen büyük ve renkli çiçeklere sahiptir. Çay ve doğal içeceklerde kullanılabilir.</p>
+        </div>
+        <div class="flower-card">
+            <h3>🪻 Lavanta</h3>
+            <p>Mor renkli ve hoş kokulu bir bitkidir. Rahatlatıcı etkisi nedeniyle aromaterapide kullanılır.</p>
+        </div>
+    </div>
 </section>
-
-</div>
-
-</section>
-
 
 <section id="about">
+    <h2>Hakkımızda</h2>
+    <div class="mission-vision">
+        <div class="card">
+            <h3>Vizyonumuz</h3>
+            <p>Capella in Bloom ile kızların teknolojiye olan ilgisini artırmayı, kod yazmayı doğa ile birleştirerek eğlenceli ve yaratıcı bir öğrenme ortamı oluşturmayı hedefliyoruz.</p>
+        </div>
+        <div class="card">
+            <h3>Misyonumuz</h3>
+            <p>Gençlerin yazılım öğrenmesini teşvik eden, yaratıcılığı destekleyen ve herkesin kod yazabileceğini gösteren interaktif bir platform geliştirmek.</p>
+        </div>
+    </div>
 
-<h2>Hakkımızda</h2>
+    <h2>Takımımız</h2>
+    <div class="team">
+        <div class="team-member right-image">
+            <img src="foto1.jpg" alt="Kurucu">
+            <div class="text">
+                <h3>Kurucu</h3>
+                <p>Capella in Bloom fikrini geliştiren ve projenin yazılım kısmını yürüten ekip üyesi.</p>
+            </div>
+        </div>
 
-<div class="mission-vision">
+        <div class="team-member left-image">
+            <img src="foto2.jpg" alt="Tasarımcı">
+            <div class="text">
+                <h3>Tasarımcı</h3>
+                <p>Web sitesinin tasarımı, kullanıcı deneyimi ve görsel düzenlemeleri üzerinde çalışır.</p>
+            </div>
+        </div>
 
-<div class="card">
-<h3>Vizyonumuz</h3>
-<p>
-Capella in Bloom ile kızların teknolojiye olan ilgisini artırmayı,
-kod yazmayı doğa ile birleştirerek eğlenceli ve yaratıcı bir öğrenme
-ortamı oluşturmayı hedefliyoruz.
-</p>
-</div>
-
-<div class="card">
-<h3>Misyonumuz</h3>
-<p>
-Gençlerin yazılım öğrenmesini teşvik eden,
-yaratıcılığı destekleyen ve herkesin kod yazabileceğini
-gösteren interaktif bir platform geliştirmek.
-</p>
-</div>
-
-</div>
-
-
-<h2>Takımımız</h2>
-
-<div class="team">
-
-<div class="team-member right-image">
-
-<img src="foto1.jpg">
-
-<div class="text">
-<h3>Kurucu</h3>
-<p>
-Capella in Bloom fikrini geliştiren ve projenin yazılım kısmını
-yürüten ekip üyesi.
-</p>
-</div>
-
-</div>
-
-
-<div class="team-member left-image">
-
-<img src="foto2.jpg">
-
-<div class="text">
-<h3>Tasarımcı</h3>
-<p>
-Web sitesinin tasarımı, kullanıcı deneyimi ve görsel
-düzenlemeleri üzerinde çalışır.
-</p>
-</div>
-
-</div>
-
-
-<div class="team-photo">
-
-<img src="team.jpg">
-<p>Capella in Bloom Takımı</p>
-
-</div>
-
-</div>
-
+        <div class="team-photo">
+            <img src="team.jpg" alt="Takım">
+            <p>Capella in Bloom Takımı</p>
+        </div>
+    </div>
 </section>
 
-
 <script src="script.js"></script>
-
 </body>
 </html>
