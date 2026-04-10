@@ -17,16 +17,15 @@ function runCode() {
 }
 
 function plantFlower() {
-    // Çiçek resimlerinin URL'leri
+    // Çiçek resimleri - kendi dosyalarınızla uyumlu
     const flowers = [
-        { name: "papatya", img: "https://cdn.pixabay.com/photo/2018/05/27/21/17/daisy-3434562_640.jpg" },
-        { name: "aycicegi", img: "https://cdn.pixabay.com/photo/2016/08/13/17/53/sunflower-1591296_640.jpg" },
-        { name: "lale", img: "https://cdn.pixabay.com/photo/2014/04/14/20/11/tulips-324175_640.jpg" },
-        { name: "gul", img: "https://cdn.pixabay.com/photo/2018/04/05/22/05/rose-3293922_640.jpg" },
-        { name: "lavanta", img: "https://cdn.pixabay.com/photo/2018/06/25/20/47/lavender-3498288_640.jpg" },
-        { name: "hibiskus", img: "https://cdn.pixabay.com/photo/2018/01/22/14/16/hibiscus-3098951_640.jpg" },
-        { name: "kiraz", img: "https://cdn.pixabay.com/photo/2016/04/15/13/59/cherry-blossom-1331322_640.jpg" },
-        { name: "capella", img: "https://cdn.pixabay.com/photo/2020/04/06/11/50/magic-flower-5009889_640.jpg" }
+        { name: "menekse", img: "menekse.png" },
+        { name: "lale", img: "lale.png" },
+        { name: "gul", img: "gul.png" },
+        { name: "capella", img: "capella.png" },
+        { name: "papatya", img: "papatya.png" },
+        { name: "orkide", img: "orkide.png" },
+        { name: "zambak", img: "zambak.png" }
     ];
 
     // Rastgele bir çiçek seç
@@ -62,21 +61,20 @@ function plantFlower() {
     // Tarla alanını al
     let field = document.getElementById("field");
 
-    // Rastgele pozisyon hesapla (tarla sınırları içinde)
+    // Rastgele pozisyon hesapla
     const maxX = field.clientWidth - 70;
     const maxY = field.clientHeight - 70;
 
     let leftPos = Math.random() * maxX;
     let topPos = Math.random() * maxY;
 
-    // Taşma olmaması için sınırlama
     leftPos = Math.max(5, Math.min(leftPos, maxX));
     topPos = Math.max(5, Math.min(topPos, maxY));
 
     flowerDiv.style.left = leftPos + "px";
     flowerDiv.style.top = topPos + "px";
 
-    // Çiçeğe sağ tıklayınca silme (isteğe bağlı)
+    // Sağ tıklama ile silme (isteğe bağlı)
     flowerDiv.addEventListener("contextmenu", function(e) {
         e.preventDefault();
         if (confirm("Bu çiçeği sökmek istediğine emin misin? 🌸")) {
