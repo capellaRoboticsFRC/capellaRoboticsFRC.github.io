@@ -17,7 +17,7 @@ function runCode() {
 }
 
 function plantFlower() {
-    // Çiçek resimlerinin URL'leri (emoji yerine görseller)
+    // Çiçek resimlerinin URL'leri
     const flowers = [
         { name: "papatya", img: "https://cdn.pixabay.com/photo/2018/05/27/21/17/daisy-3434562_640.jpg" },
         { name: "aycicegi", img: "https://cdn.pixabay.com/photo/2016/08/13/17/53/sunflower-1591296_640.jpg" },
@@ -40,12 +40,22 @@ function plantFlower() {
     let img = document.createElement("img");
     img.src = randomFlower.img;
     img.alt = randomFlower.name;
-    img.style.width = "50px";
-    img.style.height = "50px";
+    img.style.width = "55px";
+    img.style.height = "55px";
     img.style.objectFit = "cover";
-    img.style.borderRadius = "12px";
-    img.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
-    img.style.border = "3px solid white";
+    img.style.borderRadius = "50%";
+    img.style.boxShadow = "0 4px 10px rgba(0,0,0,0.25)";
+    img.style.border = "3px solid #ffd700";
+    img.style.cursor = "pointer";
+
+    // Resme tıklayınca büyüme efekti
+    img.addEventListener("click", function(e) {
+        e.stopPropagation();
+        this.style.transform = "scale(1.2)";
+        setTimeout(() => {
+            this.style.transform = "scale(1)";
+        }, 200);
+    });
 
     flowerDiv.appendChild(img);
 
@@ -66,19 +76,13 @@ function plantFlower() {
     flowerDiv.style.left = leftPos + "px";
     flowerDiv.style.top = topPos + "px";
 
-    // Çiçeğe tıklama efekti (büyüme)
-    flowerDiv.addEventListener("click", function() {
-        this.style.transform = "scale(1.3)";
-        setTimeout(() => {
-            this.style.transform = "scale(1)";
-        }, 300);
+    // Çiçeğe sağ tıklayınca silme (isteğe bağlı)
+    flowerDiv.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+        if (confirm("Bu çiçeği sökmek istediğine emin misin? 🌸")) {
+            this.remove();
+        }
     });
 
     field.appendChild(flowerDiv);
-
-    // 8 saniye sonra çiçek solar (isteğe bağlı)
-    setTimeout(() => {
-        flowerDiv.style.opacity = "0.3";
-        flowerDiv.style.transition = "1s";
-    }, 8000);
 }
