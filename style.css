@@ -1,163 +1,269 @@
+/* style.css */
+
 html {
-scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
-body{
-font-family: Arial;
-margin:0;
-background:#f4fff4;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4fff4;
 }
 
-header{
-background:#2e8b57;
-color:white;
-padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+header {
+    background: #2e8b57;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-nav ul{
-list-style:none;
-display:flex;
-gap:20px;
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-section{
-padding:40px;
+nav a:hover {
+    text-decoration: underline;
 }
 
-textarea{
-width:400px;
-height:120px;
-display:block;
-margin-bottom:10px;
+section {
+    padding: 40px;
 }
 
-button{
-padding:10px 20px;
-background:#ff69b4;
-color:white;
-border:none;
-cursor:pointer;
-font-size:16px;
+/* Ana Sayfa */
+#home h2 {
+    margin-top: 0;
 }
 
-#field{
-
-width:100vw;
-margin-left:calc(-50vw + 50%);
-
-min-height:45vh;
-
-background-image:url("tarla.png");
-background-size:cover;
-background-position:center bottom;
-background-repeat:no-repeat;
-
-position:relative;
-
-display:block;
-
-
+textarea {
+    width: 100%;
+    max-width: 500px;
+    height: 120px;
+    display: block;
+    margin-bottom: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
 }
 
-@media (max-width:768px){
-
-#field{
-
-min-height:35vh;
-background-position:center bottom;
-
+button {
+    padding: 10px 20px;
+    background: #ff69b4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 25px;
+    transition: background 0.3s;
 }
 
+button:hover {
+    background: #e0559a;
 }
 
-.flower{
-
-position:absolute;
-font-size:28px;
-
+/* Tarla Alanı */
+#field {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    min-height: 45vh;
+    background-image: url("tarla.png");
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-top: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.flower{
-font-size:20px;
-animation:grow 2s forwards;
+@media (max-width: 768px) {
+    #field {
+        min-height: 35vh;
+        background-position: center bottom;
+    }
 }
 
-@keyframes grow{
-
-0%{
-transform:scale(0.2);
-opacity:0;
+/* Çiçeklerin tarla üzerindeki stilleri */
+.flower {
+    position: absolute;
+    font-size: 28px;
+    cursor: default;
+    animation: grow 0.5s ease-out forwards;
 }
 
-50%{
-transform:scale(1.2);
+@keyframes grow {
+    0% {
+        transform: scale(0.2);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-100%{
-transform:scale(1);
-opacity:1;
+/* Çiçek Türleri Bölümü */
+.flower-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
 }
 
+.flower-info h3 {
+    background: #e8f5e9;
+    padding: 12px;
+    border-radius: 30px;
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
 }
 
-/* Vizyon Misyon */
-
-.mission-vision{
-display:flex;
-gap:30px;
-margin-top:30px;
+.flower-info p {
+    margin-top: 0;
+    color: #2d5a2c;
+    padding-left: 12px;
 }
 
-.card{
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-flex:1;
+/* Hakkımızda - Vizyon Misyon */
+.mission-vision {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
 }
 
-
-/* Takım */
-
-.team{
-margin-top:50px;
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    transition: transform 0.2s;
 }
 
-.team-member{
-display:flex;
-align-items:center;
-gap:30px;
-margin-bottom:40px;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-.team-member img{
-width:200px;
-border-radius:10px;
+/* Takım Bölümü */
+.team {
+    margin-top: 30px;
 }
 
-.right-image{
-flex-direction:row;
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
-.left-image{
-flex-direction:row-reverse;
+.team-member img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 4px solid #ffb6c1;
 }
 
-.team-photo{
-text-align:center;
-margin-top:40px;
+.right-image {
+    flex-direction: row;
 }
 
-.team-photo img{
-width:60%;
-border-radius:12px;
+.left-image {
+    flex-direction: row-reverse;
+}
+
+.team-member .text {
+    flex: 1;
+}
+
+.team-photo {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background: #e0f2e9;
+    border-radius: 24px;
+}
+
+.team-photo img {
+    width: 80%;
+    max-width: 500px;
+    border-radius: 24px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.team-photo p {
+    margin-top: 12px;
+    font-style: italic;
+    color: #2e7d64;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    section {
+        padding: 30px 20px;
+    }
+
+    .mission-vision {
+        flex-direction: column;
+    }
+
+    .team-member {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .team-member img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .flower-info {
+        grid-template-columns: 1fr;
+    }
+
+    textarea {
+        max-width: 100%;
+    }
+}
+
+/* Küçük dokunuşlar */
+h2 {
+    color: #1e6b3b;
+    border-left: 5px solid #ffb347;
+    padding-left: 15px;
+}
+
+a {
+    transition: color 0.2s;
+}
+
+button:active {
+    transform: scale(0.97);
 }
