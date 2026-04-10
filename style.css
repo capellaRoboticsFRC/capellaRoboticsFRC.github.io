@@ -99,7 +99,7 @@ button:hover {
     cursor: crosshair;
 }
 
-/* Çiçek stilleri - kalıcı versiyon (solma yok) */
+/* Çiçek stilleri - kalıcı versiyon */
 .flower {
     position: absolute;
     cursor: pointer;
@@ -137,7 +137,7 @@ button:hover {
     }
 }
 
-/* Çiçek Türleri Bölümü - Resimli Kartlar */
+/* Çiçek Türleri Bölümü */
 .flower-info {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -316,7 +316,7 @@ h2 {
     }
 }
 
-/* Küçük animasyonlar ve ekstralar */
+/* Animasyonlar */
 button:active {
     transform: scale(0.98);
 }
@@ -325,6 +325,7 @@ button:active {
     transform: scale(0.98);
 }
 
+/* Kaydırma çubuğu */
 ::-webkit-scrollbar {
     width: 8px;
 }
