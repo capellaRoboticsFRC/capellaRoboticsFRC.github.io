@@ -48,16 +48,22 @@ section {
     margin: auto;
 }
 
+/* Ana Sayfa */
+#home h2 {
+    margin-top: 0;
+}
+
 textarea {
     width: 100%;
     max-width: 500px;
     height: 120px;
     font-family: monospace;
-    padding: 10px;
+    padding: 12px;
     border-radius: 12px;
     border: 1px solid #ccc;
     margin-bottom: 10px;
     font-size: 14px;
+    resize: vertical;
 }
 
 button {
@@ -77,9 +83,10 @@ button:hover {
     box-shadow: 0 4px 15px rgba(255,105,180,0.4);
 }
 
+/* Tarla alanı */
 #field {
     width: 100%;
-    min-height: 45vh;
+    min-height: 55vh;
     background-image: url('https://cdn.pixabay.com/photo/2016/03/27/07/32/grass-1282537_640.jpg');
     background-size: cover;
     background-position: center;
@@ -88,27 +95,49 @@ button:hover {
     position: relative;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     border: 3px solid #8B6914;
+    overflow: hidden;
+    cursor: crosshair;
 }
 
+/* Çiçek stilleri - kalıcı versiyon (solma yok) */
 .flower {
     position: absolute;
-    font-size: 36px;
-    animation: grow 0.4s ease-out;
     cursor: pointer;
-    transition: 0.2s;
+    animation: grow 0.4s ease-out;
+    transition: transform 0.2s ease;
 }
 
-.flower:hover {
-    transform: scale(1.1);
+.flower img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    border: 3px solid #ffd700;
+    transition: all 0.2s;
+}
+
+.flower img:hover {
+    border-color: #ff69b4;
+    transform: scale(1.08);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
 @keyframes grow {
-    0% { transform: scale(0) rotate(-20deg); opacity: 0; }
-    80% { transform: scale(1.2) rotate(5deg); }
-    100% { transform: scale(1) rotate(0); opacity: 1; }
+    0% {
+        transform: scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
 }
 
-/* 🌸 Çiçek Kartları - RESİMLİ */
+/* Çiçek Türleri Bölümü - Resimli Kartlar */
 .flower-info {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -179,7 +208,7 @@ button:hover {
     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
-/* Takım */
+/* Takım Bölümü */
 .team {
     margin-top: 30px;
 }
@@ -244,7 +273,15 @@ button:hover {
     color: #2e7d64;
 }
 
-/* Mobil uyum */
+/* Başlık Stili */
+h2 {
+    color: #1e6b3b;
+    border-left: 6px solid #ffb347;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+/* Mobil Uyum */
 @media (max-width: 700px) {
     header {
         flex-direction: column;
@@ -264,15 +301,44 @@ button:hover {
     .flower-info {
         grid-template-columns: 1fr;
     }
-    
+
     h2 {
         font-size: 1.6rem;
     }
+
+    .flower img {
+        width: 45px;
+        height: 45px;
+    }
+
+    #field {
+        min-height: 40vh;
+    }
 }
 
-h2 {
-    color: #1e6b3b;
-    border-left: 6px solid #ffb347;
-    padding-left: 20px;
-    margin-bottom: 30px;
+/* Küçük animasyonlar ve ekstralar */
+button:active {
+    transform: scale(0.98);
+}
+
+.flower-card:active {
+    transform: scale(0.98);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e8f5e9;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2e8b57;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1e6b3b;
 }
